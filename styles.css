@@ -84,6 +84,56 @@ body {
   transition: opacity 140ms ease, transform 140ms ease;
   transform-origin: bottom center;
 }
+
+/* Tabs */
+.tabs {
+  display: inline-flex;
+  gap: 8px;
+  padding: 6px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+}
+.tabs button {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--accent);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.tabs button.active {
+  color: #ffffff;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border-color: transparent;
+}
+.portfolio-section { display: none; }
+.portfolio-section.active { display: block; }
+
+.hardware-placeholder {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.hardware-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+.hardware-card h3 { margin: 0 0 6px; font-size: 16px; }
+.hardware-card p { margin: 0; color: var(--muted); font-size: 13px; }
+
+/* Header mini tabs */
+.tabs--mini { padding: 4px; gap: 6px; }
+.tabs--mini button { padding: 6px 10px; font-weight: 700; font-size: 12px; }
+
+.nav-group { display: none; }
+.nav-group.active { display: flex; }
 .top-nav a[data-tooltip]::before {
   content: '';
   position: absolute;

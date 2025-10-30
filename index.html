@@ -11,13 +11,25 @@
         <div class="container">
             <h1>WRS ポートフォリオ（STM 部門）</h1>
             <p class="subtitle">作成システムの概要とUI構成デモ</p>
-            <nav class="top-nav">
-                <a href="system1.html" data-tooltip="ランドルト環認識">システム1: ランドルト環認識</a>
-                <a href="system2.html" data-tooltip="数字 & ランドルト認識">システム2: 数字 & ランドルト認識</a>
-                <a href="system3.html" data-tooltip="モーション検出">システム3: モーション検出</a>
-                <a href="system4.html" data-tooltip="危険物ラベル認識">システム4: 危険物ラベル認識</a>
-                <a href="system5.html" data-tooltip="QRコード認識">システム5: QRコード認識</a>
-            </nav>
+            <div style="display:flex; gap:12px; align-items:center; justify-content:space-between;">
+                <nav class="top-nav nav-group active" data-scope="software">
+                    <a href="system1.html" data-tooltip="ランドルト環認識">システム1: ランドルト環認識</a>
+                    <a href="system2.html" data-tooltip="数字 & ランドルト認識">システム2: 数字 & ランドルト認識</a>
+                    <a href="system3.html" data-tooltip="モーション検出">システム3: モーション検出</a>
+                    <a href="system4.html" data-tooltip="危険物ラベル認識">システム4: 危険物ラベル認識</a>
+                    <a href="system5.html" data-tooltip="QRコード認識">システム5: QRコード認識</a>
+                </nav>
+                <nav class="top-nav nav-group" data-scope="hardware">
+                    <a href="hardware1.html" data-tooltip="防水機体">HW1: 防水機体</a>
+                    <a href="hardware2.html" data-tooltip="ビー玉機体">HW2: ビー玉機体</a>
+                    <a href="hardware3.html" data-tooltip="ふき取り機体">HW3: ふき取り機体</a>
+                    <a href="hardware4.html" data-tooltip="ノーマル機体">HW4: ノーマル機体</a>
+                </nav>
+                <div class="tabs tabs--mini" id="header-tabs">
+                    <button type="button" data-target="#software" class="active">ソフトウェア</button>
+                    <button type="button" data-target="#hardware">ハードウェア</button>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -33,6 +45,13 @@
             </div>
         </section>
         <section class="system-section">
+            <div class="tabs" id="portfolio-tabs">
+                <button type="button" data-target="#software" class="active">ソフトウェア</button>
+                <button type="button" data-target="#hardware">ハードウェア</button>
+            </div>
+        </section>
+
+        <section class="system-section portfolio-section active" id="software">
             <h2>World Robot Summit（WRS）とは</h2>
             <div class="text-panel">
                 <p>World Robot Summit（WRS）は、ロボットの社会実装や研究開発の加速を目的とした国際的なロボット複合イベントです。課題解決に向けた新たなイノベーションの創出を目指しており、イベントの中心となる競技会では、最先端のロボット技術やソリューションを競うために、世界中から参加チームが集結します。</p>
@@ -41,7 +60,7 @@
             </div>
         </section>
 
-        <section class="system-section">
+        <section class="system-section portfolio-section active" id="software">
             <h2>このポートフォリオについて</h2>
             <div class="text-panel">
                 <p>本サイトでは、WRS に向けて STM 部門で作成したシステムの UI 構成と概要を紹介しています。各システムのページでは、画面配置（左上・右上・右下・左下）の意図をテキストで説明し、画像は用意されたサンプルのみをギャラリーとして掲載しています。ギャラリー画像はクリックで拡大（ライトボックス表示）できます。</p>
@@ -60,7 +79,7 @@
             <p class="desc">下記リンクから各システムの詳細ページへ移動し、ギャラリー画像をクリックして拡大表示できます。</p>
         </section>
         <!-- Overview keeps existing previews -->
-        <section id="system1" class="system-section">
+        <section id="system1" class="system-section portfolio-section active" >
             <h2>システム1：ランドルト環認識システム <a href="system1.html" class="cta" style="margin-left:12px;">ランドルト環ページへ</a></h2>
             <div class="layout-notes">
                 <ul>
@@ -69,6 +88,9 @@
                     <li><strong>右下</strong>: 二物体を同時に認識した際の拡大表示（右上と同仕様）</li>
                     <li><strong>左下</strong>: ランドルト環の穴の位置を画像処理して表示</li>
                 </ul>
+            </div>
+            <div class="text-panel">
+                <p><strong>課題説明</strong>: ランドルト環の切れ目方向をリアルタイムに推定し、複数対象にも頑健に対応する認識・可視化を行う課題。</p>
             </div>
             <div class="gallery">
                 <img src="image/randoruto-W.jpg" alt="ランドルト環 W">
@@ -79,7 +101,7 @@
         </section>
 
         <!-- System 2 -->
-        <section id="system2" class="system-section">
+        <section id="system2" class="system-section portfolio-section active" >
             <h2>システム2：数字 & ランドルト認識システム <a href="system2.html" class="cta" style="margin-left:12px;">数字&ランドルトページへ</a></h2>
             <div class="layout-notes">
                 <ul>
@@ -88,6 +110,9 @@
                     <li><strong>右下</strong>: 二物体同時認識の拡大表示</li>
                     <li><strong>左下</strong>: 認識した情報の文字表示</li>
                 </ul>
+            </div>
+            <div class="text-panel">
+                <p><strong>課題説明</strong>: 数字とランドルト環を同一パイプラインで同時に検出・分類し、結果を視覚とテキストで即時提示する統合認識課題。</p>
             </div>
             <div class="gallery">
                 <img src="image/number.jpg" alt="数字 認識サンプル">
@@ -104,12 +129,15 @@
         </section>
 
         <!-- System 3 -->
-        <section id="system3" class="system-section">
+        <section id="system3" class="system-section portfolio-section active" >
             <h2>システム3：モーション検出 <a href="system3.html" class="cta" style="margin-left:12px;">モーションページへ</a></h2>
             <div class="layout-notes">
                 <ul>
                     <li><strong>表示内容</strong>: YOLO で学習した物体の検出と追跡を行い、経路やバウンディングボックスを表示</li>
                 </ul>
+            </div>
+            <div class="text-panel">
+                <p><strong>課題説明</strong>: 動体をリアルタイムに検出し、追跡・動きの可視化を行うことで安全監視や進捗観察を支援する課題。</p>
             </div>
             <div class="gallery">
                 <img src="image/motion.jpg" alt="モーション検出">
@@ -117,7 +145,7 @@
         </section>
 
         <!-- System 4 -->
-        <section id="system4" class="system-section">
+        <section id="system4" class="system-section portfolio-section active" >
             <h2>システム4：危険物ラベル認識 <a href="system4.html" class="cta" style="margin-left:12px;">危険物ページへ</a></h2>
             <div class="layout-notes">
                 <ul>
@@ -126,6 +154,9 @@
                     <li><strong>右下</strong>: 複数ラベル同時検出時の拡大表示</li>
                     <li><strong>左下</strong>: ラベル属性・クラス・信頼度などのテキスト出力</li>
                 </ul>
+            </div>
+            <div class="text-panel">
+                <p><strong>課題説明</strong>: 容器や掲示物から危険物ラベル（GHS 等）を自動認識し、クラスや注意喚起情報を提示して安全確認を支援する課題。</p>
             </div>
             <div class="gallery">
                 <img src="image/hazardous.jpg" alt="危険物ラベル">
@@ -142,7 +173,7 @@
         </section>
 
         <!-- System 5 -->
-        <section id="system5" class="system-section">
+        <section id="system5" class="system-section portfolio-section active" >
             <h2>システム5：QRコード認識 <a href="system5.html" class="cta" style="margin-left:12px;">QRページへ</a></h2>
             <div class="layout-notes">
                 <ul>
@@ -152,10 +183,38 @@
                     <li><strong>右下</strong>: 選択QRに対応する画像を表示</li>
                 </ul>
             </div>
+            <div class="text-panel">
+                <p><strong>課題説明</strong>: QRコードを高速に読み取り、リンクやテキスト等の内容を即時に提示・参照できるようにし、現場の情報取得を効率化する課題。</p>
+            </div>
             <div class="gallery">
                 <img src="image/QR.jpg" alt="QR サンプル">
             </div>
             
+        </section>
+
+        <section class="system-section portfolio-section" id="hardware">
+            <h2>ハードウェア（準備中）</h2>
+            <div class="text-panel">
+                <p>ハードウェア関連のシステムや機体構成、センサー・ジンバル・通信系などのポートフォリオを今後追加していきます。なお、掲載する各機体は<strong>操学舘ドローンスクール</strong>が設計・制作したものです。</p>
+            </div>
+            <div class="hardware-placeholder">
+                <a class="hardware-card" href="hardware1.html">
+                    <h3>ハードウェア1：防水機体</h3>
+                    <p>防水設計、シーリング、防滴ペイロード。</p>
+                </a>
+                <a class="hardware-card" href="hardware2.html">
+                    <h3>ハードウェア2：ビー玉機体</h3>
+                    <p>転がり耐性、着地挙動、接地センサー。</p>
+                </a>
+                <a class="hardware-card" href="hardware3.html">
+                    <h3>ハードウェア3：ふき取り機体</h3>
+                    <p>拭取りペイロード、接触圧制御、表面追従。</p>
+                </a>
+                <a class="hardware-card" href="hardware4.html">
+                    <h3>ハードウェア4：ノーマル機体</h3>
+                    <p>汎用構成、拡張性、信頼性。</p>
+                </a>
+            </div>
         </section>
     </main>
 

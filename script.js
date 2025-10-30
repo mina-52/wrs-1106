@@ -123,4 +123,57 @@
   }
 })();
 
+// Portfolio tabs (Software/Hardware)
+(function () {
+  const tabs = document.getElementById('portfolio-tabs');
+  if (!tabs) return;
+  const buttons = tabs.querySelectorAll('button[data-target]');
+  const sections = document.querySelectorAll('.portfolio-section');
+
+  function activate(targetSelector) {
+    sections.forEach((sec) => {
+      if (targetSelector === '#software') {
+        // Show all software sections (multiple)
+        if (sec.id === 'hardware') {
+          sec.classList.remove('active');
+        } else {
+          sec.classList.add('active');
+        }
+      } else if (targetSelector === '#hardware') {
+        if (sec.id === 'hardware') {
+          sec.classList.add('active');
+        } else {
+          sec.classList.remove('active');
+        }
+      }
+    });
+    buttons.forEach((b) => b.classList.toggle('active', b.getAttribute('data-target') === targetSelector));
+    // Sync header tabs as well
+    document.querySelectorAll('#header-tabs button[data-target]').forEach((b) => {
+      b.classList.toggle('active', b.getAttribute('data-target') === targetSelector);
+    });
+    // Toggle header nav groups
+    document.querySelectorAll('.nav-group').forEach((ng) => {
+      const scope = ng.getAttribute('data-scope');
+      const shouldShow = (targetSelector === '#software' && scope === 'software') || (targetSelector === '#hardware' && scope === 'hardware');
+      ng.classList.toggle('active', shouldShow);
+    });
+    try { localStorage.setItem('portfolioTab', targetSelector); } catch (_) {}
+    if (history && history.replaceState) {
+      history.replaceState(null, '', targetSelector);
+    }
+  }
+
+  function bindButtons(root) {
+    root.querySelectorAll('button[data-target]').forEach((btn) => {
+      btn.addEventListener('click', () => activate(btn.getAttribute('data-target')));
+    });
+  }
+  bindButtons(document);
+
+  const saved = (function(){ try { return localStorage.getItem('portfolioTab'); } catch (_) { return null; }})();
+  const hash = location.hash === '#hardware' ? '#hardware' : '#software';
+  activate(saved || hash || '#software');
+})();
+
 
