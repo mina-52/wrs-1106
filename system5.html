@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>システム5｜QRコード認識</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>システム5：QRコード認識</h1>
+            <nav class="top-nav">
+                <a href="index.html" data-tooltip="トップへ戻る">トップ</a>
+                <a href="system1.html" data-tooltip="ランドルト環認識">システム1</a>
+                <a href="system2.html" data-tooltip="数字 & ランドルト認識">システム2</a>
+                <a href="system3.html" data-tooltip="モーション検出">システム3</a>
+                <a href="system4.html" data-tooltip="危険物ラベル認識">システム4</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="system-section">
+            <h2>UI構成</h2>
+            <div class="layout-notes">
+                <ul>
+                    <li><strong>左上</strong>: QRコードの取得（カメラ/画像入力）</li>
+                    <li><strong>左下</strong>: 認識したQR情報の保存リスト</li>
+                    <li><strong>右上</strong>: 左下で選択したQRの内容を表示</li>
+                    <li><strong>右下</strong>: 選択QRに対応する画像を表示</li>
+                </ul>
+            </div>
+
+            <h2>ギャラリー（クリックで拡大）</h2>
+            <div class="gallery">
+                <img src="image/QR.jpg" alt="QR サンプル">
+            </div>
+
+            
+        </section>
+
+        <section class="system-section">
+            <h2>アルゴリズム・実装概要</h2>
+            <div class="text-panel">
+                <p>OpenCV の <code>QRCodeDetector</code> によるマルチ検出を中核に、検出履歴・内容表示・対応画像の紐づけ・CSV保存までを一体で管理します。UI は <strong>左右2分割</strong>（左: カメラ映像＋履歴、右: 内容プレビュー＋対応画像）で、読み取りから参照・保存の流れを止めずに操作できます。</p>
+                <ul>
+                    <li><strong>検出</strong>: <code>detectAndDecodeMulti(frame)</code> で複数QRを同時検出。各QR内容は重複管理し、<strong>管理番号（QR#）</strong>を付与。</li>
+                    <li><strong>履歴/トラッキング</strong>: 最新から <code>MAX_HISTORY=10</code> 件を表示。新規検出は赤、選択中はシアン、プレビュー保存済みは緑で色分け。</li>
+                    <li><strong>内容表示</strong>: 右上に選択QRの<strong>フルテキスト</strong>を折り返し表示。URLは判定、画像URLはプレビュー対応（タイムアウト/例外処理あり）。</li>
+                    <li><strong>対応画像</strong>: 右下に「左動画の対応フレーム」を表示。<code>session_folder</code> 内の命名規則（<code>..._M_left_video.jpg</code> や <code>QR{番号}</code> を含む）や時刻照合で最適な1枚を検索し、キャッシュ活用。</li>
+                    <li><strong>CSV保存</strong>: セッション毎に <code>qr_history_YYYYMMDD_HHMMSS.csv</code> を生成。<strong>通し番号・内容・検出時刻・プレビュー保存済み</strong>を管理し、重複検出時も内容の完全一致で重複判定。</li>
+                    <li><strong>文字化け対策</strong>: Mac を含む環境差に対応するため、<code>NFC</code> 正規化・BOM/ゼロ幅除去・再エンコードを実施し、安全な文字列へ整形。</li>
+                    <li><strong>フォント</strong>: 日本語/英語を判別して OS ごとに適切なフォントを選択。アウトライン付き描画で視認性を確保。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>画面レイアウトと保存動作</h2>
+            <div class="text-panel">
+                <ul>
+                    <li><strong>左（上）</strong>: ライブ映像＋検出枠・短縮ラベル。<strong>自動保存</strong>は新規QR検出時に左動画のみ実施。</li>
+                    <li><strong>左（下）</strong>: 検出履歴（最新→古い）。項目は動的スペーシングで見切れを防止、番号付きで直接選択可能。</li>
+                    <li><strong>右（上）</strong>: 選択中QRの内容フル表示（vCard/JSONは改行維持・折り返し）。</li>
+                    <li><strong>右（下）</strong>: 選択中QRに紐づく左動画の静止画像を中央配置で表示（見つからなければメッセージ）。</li>
+                    <li><strong>手動保存</strong>: 右側の<strong>内容プレビュー</strong>のみ保存可（CSVに保存状態を反映）。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>キー操作</h2>
+            <div class="text-panel">
+                <ul>
+                    <li><strong>1</strong>: 履歴を順番に切り替え（最新から循環）。</li>
+                    <li><strong>2</strong>: 現在表示中の<strong>内容プレビュー</strong>を手動保存（左動画は保存しない）。</li>
+                    <li><strong>Enter</strong>: 表示中の内容が URL の場合にブラウザで開く。</li>
+                    <li><strong>3〜9</strong>: 履歴の該当番号を直接選択。</li>
+                    <li><strong>q</strong>: 終了、CSV から重複を除いた履歴一覧を標準出力。</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <small>© 2025 WRS | STM 部門</small>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+

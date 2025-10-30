@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>システム1｜ランドルト環認識</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>システム1：ランドルト環認識</h1>
+            <nav class="top-nav">
+                <a href="index.html" data-tooltip="トップへ戻る">トップ</a>
+                <a href="system2.html" data-tooltip="数字 & ランドルト認識">システム2</a>
+                <a href="system3.html" data-tooltip="モーション検出">システム3</a>
+                <a href="system4.html" data-tooltip="危険物ラベル認識">システム4</a>
+                <a href="system5.html" data-tooltip="QRコード認識">システム5</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="system-section">
+            <h2>UI構成</h2>
+            <div class="layout-notes">
+                <ul>
+                    <li><strong>左上</strong>: YOLO によるリアルタイム認識</li>
+                    <li><strong>右上</strong>: 認識した画像をノイズ除去し拡大表示</li>
+                    <li><strong>右下</strong>: 二物体同時認識時の拡大表示（右上と同仕様）</li>
+                    <li><strong>左下</strong>: ランドルト環の穴の位置を画像処理して表示</li>
+                </ul>
+            </div>
+
+            <h2>ギャラリー（クリックで拡大）</h2>
+            <div class="gallery">
+                <img src="image/randoruto-W.jpg" alt="ランドルト環 W">
+                <img src="image/randoruto-W2.jpg" alt="ランドルト環 W2">
+                <img src="image/randoruto-B.jpg" alt="ランドルト環 B">
+                <img src="image/randoruto-B2.jpg" alt="ランドルト環 B2">
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>アルゴリズム概要</h2>
+            <div class="text-panel">
+                <p>本システムは、YOLO による検出結果を用いながら、ランドルト環の穴（切れ目）方向を <strong>HSV空間での明度判定</strong>と<strong>同心円サンプリング</strong>によって高精度に推定します。以下の Python ロジックに基づいて設計されています。</p>
+                <ul>
+                    <li><strong>明度解析</strong>: 画像全体の平均明度から背景（白/黒）を推定し、白ランドルト/黒ランドルト双方に対応（閾値: BLACK_THRESHOLD=80, WHITE_THRESHOLD=115）。</li>
+                    <li><strong>HSV変換</strong>: BGR→RGB→HSV（OpenCV）へ変換。OpenCV の H は 0-179 なので 0-359 に補正。</li>
+                    <li><strong>同心円サンプリング</strong>: 画像中心から半径を変えて円周上の画素を多数サンプリング（半径は外周を除外しつつ LANDOLT_NUM_CIRCLES=20 で分割）。</li>
+                    <li><strong>色一致率</strong>: 各円で「ランドルト環色」に一致する画素率（match_ratio）を算出し、<code>LANDOLT_MATCH_RATIO_THRESHOLD=0.8</code> 以上を有効円と判定。</li>
+                    <li><strong>ギャップ検出</strong>: 一致しない角度を時系列に連結してギャップ区間に変換（最小ギャップ角 <code>LANDOLT_MIN_GAP_SIZE=5°</code>）。ギャップ中心角を時計時刻（0-11時）へマッピング。</li>
+                    <li><strong>黒/白の自動選択</strong>: 有効円の連続性スコアと個数を比較し、黒ランドルト/白ランドルトのどちらを採用するか自動決定。</li>
+                    <li><strong>可視化</strong>: 元画像へ半透明オーバーレイ（<code>LANDOLT_OVERLAY_ALPHA=0.6</code>）。ランドルト環部を青/緑、ギャップ部を赤/マゼンタで描画し、円弧と時刻ラベルを表示。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>操作方法と表示</h2>
+            <div class="text-panel">
+                <ul>
+                    <li><strong>入力</strong>: カメラ（CAP_PROP で 1280x720, 30FPS に設定）。YOLO モデル（例: <code>YOLO('target10_9.pt')</code>）で物体検出。</li>
+                    <li><strong>四分割ビュー</strong>:
+                        <ul>
+                            <li>左上: 最高信頼度ターゲットのクロップ（0.9秒ごと更新、独立に一時停止可）。</li>
+                            <li>右上: 検出結果（全体）表示、Enter キーで全画面切替。</li>
+                            <li>左下: 第2候補ターゲット（存在すれば）を表示、独立に一時停止可。</li>
+                            <li>右下: 左上ターゲットに対するランドルト環オーバーレイと解析情報。</li>
+                        </ul>
+                    </li>
+                    <li><strong>キー操作</strong>: <code>1</code>=左上一時停止/保存、<code>2</code>=左下一時停止/保存、<code>Enter</code>=右上全画面/四分割切替、<code>q</code>=終了。</li>
+                    <li><strong>保存</strong>: 一時停止時に、検出全体画像・左上オリジナル・HSVオーバーレイなどを <code>randoruto-wrs/session_YYYYMMDD_HHMMSS/</code> に自動保存（連番・時刻付きファイル名）。</li>
+                    <li><strong>注記</strong>: 明度に依存して黒/白ランドルトを自動選択。ギャップは角度連結後に 12時間表記へ変換して直感的に可視化します。</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <small>© 2025 WRS | STM 部門</small>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+

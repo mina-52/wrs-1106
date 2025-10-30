@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>システム2｜数字 & ランドルト認識</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>システム2：数字 & ランドルト認識</h1>
+            <nav class="top-nav">
+                <a href="index.html" data-tooltip="トップへ戻る">トップ</a>
+                <a href="system1.html" data-tooltip="ランドルト環認識">システム1</a>
+                <a href="system3.html" data-tooltip="モーション検出">システム3</a>
+                <a href="system4.html" data-tooltip="危険物ラベル認識">システム4</a>
+                <a href="system5.html" data-tooltip="QRコード認識">システム5</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="system-section">
+            <h2>UI構成</h2>
+            <div class="layout-notes">
+                <ul>
+                    <li><strong>左上</strong>: YOLO によるリアルタイム認識</li>
+                    <li><strong>右上</strong>: 認識画像のノイズ除去・拡大表示</li>
+                    <li><strong>右下</strong>: 二物体同時認識の拡大表示</li>
+                    <li><strong>左下</strong>: 認識した情報の文字表示</li>
+                </ul>
+            </div>
+
+            <h2>ギャラリー（クリックで拡大）</h2>
+            <div class="gallery">
+                <img src="image/number.jpg" alt="数字 認識サンプル">
+            </div>
+
+            <div class="panel" data-label="テキスト出力">
+                <div class="text-panel" id="number-results">
+                    <ul>
+                        <li>認識ラベル: 7（信頼度 0.92）</li>
+                        <li>認識ラベル: 3（信頼度 0.88）</li>
+                        <li>ランドルト環: 右開き（信頼度 0.90）</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <small>© 2025 WRS | STM 部門</small>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+

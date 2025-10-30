@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WRS ポートフォリオ | STM 部門</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>WRS ポートフォリオ（STM 部門）</h1>
+            <p class="subtitle">作成システムの概要とUI構成デモ</p>
+            <nav class="top-nav">
+                <a href="system1.html" data-tooltip="ランドルト環認識">システム1: ランドルト環認識</a>
+                <a href="system2.html" data-tooltip="数字 & ランドルト認識">システム2: 数字 & ランドルト認識</a>
+                <a href="system3.html" data-tooltip="モーション検出">システム3: モーション検出</a>
+                <a href="system4.html" data-tooltip="危険物ラベル認識">システム4: 危険物ラベル認識</a>
+                <a href="system5.html" data-tooltip="QRコード認識">システム5: QRコード認識</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero hero--with-photo">
+            <div class="hero-inner">
+                <div class="hero-copy">
+                    <h2>Drone x WRS システムポートフォリオ</h2>
+                    <p>災害対応・検出・追跡・認識を、ドローンの現場運用を意識したUIで整理。</p>
+                    <a class="cta" href="#system1">システム一覧を見る</a>
+                </div>
+                <div class="hero-media" style="background-image:url('image/AVATA2_simple.jpg');"></div>
+            </div>
+        </section>
+        <section class="system-section">
+            <h2>World Robot Summit（WRS）とは</h2>
+            <div class="text-panel">
+                <p>World Robot Summit（WRS）は、ロボットの社会実装や研究開発の加速を目的とした国際的なロボット複合イベントです。課題解決に向けた新たなイノベーションの創出を目指しており、イベントの中心となる競技会では、最先端のロボット技術やソリューションを競うために、世界中から参加チームが集結します。</p>
+                <p>私が参加したのは <strong>STMチャレンジ（過酷環境 F-REI チャレンジ）</strong> で、大規模な災害による困難環境下で活躍するロボット・ドローンの開発、プラント・トンネル災害の予防、災害時の対応のための技術開発を目的とする競技です。</p>
+                <p>今回は <strong>TEAM-SOGAKKAN</strong> として、操学舘ドローンスクールと関西学院大学の合同チームで出場しました。操学舘はドローンの操縦とハードウェアの作成、関西学院大学はソフトウェアの作成を主に担当しました。</p>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>このポートフォリオについて</h2>
+            <div class="text-panel">
+                <p>本サイトでは、WRS に向けて STM 部門で作成したシステムの UI 構成と概要を紹介しています。各システムのページでは、画面配置（左上・右上・右下・左下）の意図をテキストで説明し、画像は用意されたサンプルのみをギャラリーとして掲載しています。ギャラリー画像はクリックで拡大（ライトボックス表示）できます。</p>
+                <ul>
+                    <li>システム1：ランドルト環認識</li>
+                    <li>システム2：数字＆ランドルト認識</li>
+                    <li>システム3：モーション検出</li>
+                    <li>システム4：危険物ラベル認識</li>
+                    <li>システム5：QRコード認識</li>
+                </ul>
+                <p>各ページは上部ナビゲーションから移動できます。詳細はそれぞれのページをご覧ください。</p>
+            </div>
+        </section>
+        <section class="system-section">
+            <h2>各システムの概要</h2>
+            <p class="desc">下記リンクから各システムの詳細ページへ移動し、ギャラリー画像をクリックして拡大表示できます。</p>
+        </section>
+        <!-- Overview keeps existing previews -->
+        <section id="system1" class="system-section">
+            <h2>システム1：ランドルト環認識システム <a href="system1.html" class="cta" style="margin-left:12px;">ランドルト環ページへ</a></h2>
+            <div class="layout-notes">
+                <ul>
+                    <li><strong>左上</strong>: YOLO によるリアルタイム認識</li>
+                    <li><strong>右上</strong>: 認識した画像をノイズ除去し拡大表示</li>
+                    <li><strong>右下</strong>: 二物体を同時に認識した際の拡大表示（右上と同仕様）</li>
+                    <li><strong>左下</strong>: ランドルト環の穴の位置を画像処理して表示</li>
+                </ul>
+            </div>
+            <div class="gallery">
+                <img src="image/randoruto-W.jpg" alt="ランドルト環 W">
+                <img src="image/randoruto-W2.jpg" alt="ランドルト環 W2">
+                <img src="image/randoruto-B.jpg" alt="ランドルト環 B">
+                <img src="image/randoruto-B2.jpg" alt="ランドルト環 B2">
+            </div>
+        </section>
+
+        <!-- System 2 -->
+        <section id="system2" class="system-section">
+            <h2>システム2：数字 & ランドルト認識システム <a href="system2.html" class="cta" style="margin-left:12px;">数字&ランドルトページへ</a></h2>
+            <div class="layout-notes">
+                <ul>
+                    <li><strong>左上</strong>: YOLO によるリアルタイム認識</li>
+                    <li><strong>右上</strong>: 認識画像のノイズ除去・拡大表示</li>
+                    <li><strong>右下</strong>: 二物体同時認識の拡大表示</li>
+                    <li><strong>左下</strong>: 認識した情報の文字表示</li>
+                </ul>
+            </div>
+            <div class="gallery">
+                <img src="image/number.jpg" alt="数字 認識サンプル">
+            </div>
+            <div class="panel" data-label="テキスト出力">
+                <div class="text-panel" id="number-results">
+                    <ul>
+                        <li>認識ラベル: 7（信頼度 0.92）</li>
+                        <li>認識ラベル: 3（信頼度 0.88）</li>
+                        <li>ランドルト環: 右開き（信頼度 0.90）</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- System 3 -->
+        <section id="system3" class="system-section">
+            <h2>システム3：モーション検出 <a href="system3.html" class="cta" style="margin-left:12px;">モーションページへ</a></h2>
+            <div class="layout-notes">
+                <ul>
+                    <li><strong>表示内容</strong>: YOLO で学習した物体の検出と追跡を行い、経路やバウンディングボックスを表示</li>
+                </ul>
+            </div>
+            <div class="gallery">
+                <img src="image/motion.jpg" alt="モーション検出">
+            </div>
+        </section>
+
+        <!-- System 4 -->
+        <section id="system4" class="system-section">
+            <h2>システム4：危険物ラベル認識 <a href="system4.html" class="cta" style="margin-left:12px;">危険物ページへ</a></h2>
+            <div class="layout-notes">
+                <ul>
+                    <li><strong>左上</strong>: YOLO によるリアルタイムの危険物ラベル検出</li>
+                    <li><strong>右上</strong>: 検出領域をノイズ除去して拡大表示</li>
+                    <li><strong>右下</strong>: 複数ラベル同時検出時の拡大表示</li>
+                    <li><strong>左下</strong>: ラベル属性・クラス・信頼度などのテキスト出力</li>
+                </ul>
+            </div>
+            <div class="gallery">
+                <img src="image/hazardous.jpg" alt="危険物ラベル">
+            </div>
+            <div class="panel" data-label="テキスト出力">
+                <div class="text-panel">
+                    <ul>
+                        <li>ラベル: 可燃性（Flammable）</li>
+                        <li>信頼度: 0.94</li>
+                        <li>クラス: GHS02</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- System 5 -->
+        <section id="system5" class="system-section">
+            <h2>システム5：QRコード認識 <a href="system5.html" class="cta" style="margin-left:12px;">QRページへ</a></h2>
+            <div class="layout-notes">
+                <ul>
+                    <li><strong>左上</strong>: QRコードの取得（カメラ/画像入力）</li>
+                    <li><strong>左下</strong>: 認識したQR情報の保存リスト</li>
+                    <li><strong>右上</strong>: 左下で選択したQRの内容を表示</li>
+                    <li><strong>右下</strong>: 選択QRに対応する画像を表示</li>
+                </ul>
+            </div>
+            <div class="gallery">
+                <img src="image/QR.jpg" alt="QR サンプル">
+            </div>
+            
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <small>© 2025 WRS | STM 部門</small>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+ </body>
+ </html>
+
+

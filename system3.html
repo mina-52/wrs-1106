@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>システム3｜モーション検出</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>システム3：モーション検出</h1>
+            <nav class="top-nav">
+                <a href="index.html" data-tooltip="トップへ戻る">トップ</a>
+                <a href="system1.html" data-tooltip="ランドルト環認識">システム1</a>
+                <a href="system2.html" data-tooltip="数字 & ランドルト認識">システム2</a>
+                <a href="system4.html" data-tooltip="危険物ラベル認識">システム4</a>
+                <a href="system5.html" data-tooltip="QRコード認識">システム5</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="system-section">
+            <h2>UI構成</h2>
+            <div class="layout-notes">
+                <ul>
+                    <li><strong>表示内容</strong>: YOLO で学習した物体の検出と追跡を行い、経路やバウンディングボックスを表示</li>
+                </ul>
+            </div>
+
+            <h2>ギャラリー（クリックで拡大）</h2>
+            <div class="gallery">
+                <img src="image/motion.jpg" alt="モーション検出">
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>アルゴリズム・実装概要</h2>
+            <div class="text-panel">
+                <ul>
+                    <li><strong>入力/推論</strong>: OpenCV カメラ入力（1280x720/30FPS）に対して <code>YOLO('morsyon.pt')</code> を適用。検出結果を <strong>annotated_frame</strong> として描画。</li>
+                    <li><strong>表示モード</strong>: 既定で<strong>全画面</strong>（右上ビュー）を表示。Enter で <strong>四分割</strong>と切替。</li>
+                    <li><strong>四分割ビュー</strong>:
+                        <ul>
+                            <li>左上: 最高信頼度ターゲットのクロップ（独立一時停止可）。</li>
+                            <li>右上: 全体検出ビュー。</li>
+                            <li>左下: 2番目のターゲット（存在時）のクロップ（独立一時停止可）。</li>
+                            <li>右下: 補助表示。対象がある場合は HSV/ランドルト解析オーバーレイ（実装ロジック準拠）、なければ検出統計をテキスト表示。</li>
+                        </ul>
+                    </li>
+                    <li><strong>保存</strong>: このモードでは画像保存は行わない旨を明示（ログにも注意書き出力）。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>キー操作</h2>
+            <div class="text-panel">
+                <ul>
+                    <li><strong>1</strong>: 左上の一時停止/再開。</li>
+                    <li><strong>2</strong>: 左下の一時停止/再開。</li>
+                    <li><strong>Enter</strong>: 右上の全画面/四分割の切替。</li>
+                    <li><strong>q</strong>: 終了。</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <small>© 2025 WRS | STM 部門</small>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+

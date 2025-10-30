@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>システム4｜危険物ラベル認識</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>システム4：危険物ラベル認識</h1>
+            <nav class="top-nav">
+                <a href="index.html" data-tooltip="トップへ戻る">トップ</a>
+                <a href="system1.html" data-tooltip="ランドルト環認識">システム1</a>
+                <a href="system2.html" data-tooltip="数字 & ランドルト認識">システム2</a>
+                <a href="system3.html" data-tooltip="モーション検出">システム3</a>
+                <a href="system5.html" data-tooltip="QRコード認識">システム5</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="system-section">
+            <h2>UI構成</h2>
+            <div class="layout-notes">
+                <ul>
+                    <li><strong>左上</strong>: YOLO によるリアルタイムの危険物ラベル検出</li>
+                    <li><strong>右上</strong>: 検出領域をノイズ除去して拡大表示</li>
+                    <li><strong>右下</strong>: 複数ラベル同時検出時の拡大表示</li>
+                    <li><strong>左下</strong>: ラベル属性・クラス・信頼度などのテキスト出力</li>
+                </ul>
+            </div>
+
+            <h2>ギャラリー（クリックで拡大）</h2>
+            <div class="gallery">
+                <img src="image/hazardous.jpg" alt="危険物ラベル">
+            </div>
+
+            <div class="panel" data-label="テキスト出力">
+                <div class="text-panel">
+                    <ul>
+                        <li>ラベル: 可燃性（Flammable）</li>
+                        <li>信頼度: 0.94</li>
+                        <li>クラス: GHS02</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>アルゴリズム・実装概要</h2>
+            <div class="text-panel">
+                <p>OpenCV のカメラ入力に対して、学習済み YOLO モデル <code>kikenbutu.pt</code> を用いたリアルタイム推論を行い、四分割ビューで検出結果を提示します。提供スクリプトの構成に基づく要点は以下の通りです。</p>
+                <ul>
+                    <li><strong>入力/初期化</strong>: <code>cv2.VideoCapture(0)</code>（1280x720, 30FPS）で取り込み。セッション毎に <code>kikenbutu/session_YYYYMMDD_HHMMSS</code> を作成し、保存カウンタを管理。</li>
+                    <li><strong>推論</strong>: <code>YOLO('kikenbutu.pt')</code> でフレームごとに実行。全検出に対し矩形・ラベル・信頼度を付与した <strong>annotated_frame</strong> を生成。</li>
+                    <li><strong>ビュー</strong>（四分割）:
+                        <ul>
+                            <li>左上: 最高信頼度の検出をクロップ表示（独立に一時停止可）。</li>
+                            <li>右上: 全体の検出オーバービュー（Enter で全画面切替）。</li>
+                            <li>左下: 2番目の検出（存在時）をクロップ表示（独立に一時停止可）。</li>
+                            <li>右下: 検出数/各フレームカウンタ/一時停止状態/保存回数などの情報をテキストで表示。</li>
+                        </ul>
+                    </li>
+                    <li><strong>保存</strong>: 一時停止時に <strong>annotated</strong> 全体画像を連番・時刻付きで保存。オプションで左上/左下パネルの画像も保存し、各パネルにはリサイズ後に BBox とラベル・信頼度を付与。</li>
+                    <li><strong>UI表示</strong>: パネルには再生/一時停止の縁色（緑/オレンジ）を描画し、状態を視覚的に区別。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>保存仕様</h2>
+            <div class="text-panel">
+                <ul>
+                    <li><strong>保存先</strong>: <code>kikenbutu/session_YYYYMMDD_HHMMSS/</code></li>
+                    <li><strong>ファイル名</strong>: <code>capture_{連番}_{日時}_frame{カウント}_{検出数}objects.jpg</code>（全体）。左上/左下保存時は <code>..._leftup_...</code>/<code>..._leftdown_...</code> を付加。</li>
+                    <li><strong>内容</strong>: 全体は全検出の BBox＋ラベル＋信頼度を描画。パネル保存はパネル解像度に合わせて BBox を再計算して描画。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>キー操作</h2>
+            <div class="text-panel">
+                <ul>
+                    <li><strong>1</strong>: 左上の一時停止/再開（保存実行）。</li>
+                    <li><strong>2</strong>: 左下の一時停止/再開（保存実行）。</li>
+                    <li><strong>Enter</strong>: 右上（検出画面）の全画面/四分割切替。</li>
+                    <li><strong>q</strong>: 終了。</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <small>© 2025 WRS | STM 部門</small>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
