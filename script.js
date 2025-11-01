@@ -44,7 +44,7 @@
     content.textContent = selected ? selected.text : '未選択';
     // プレビュー画像は任意（要素が存在する場合のみ）
     if (preview) {
-      preview.src = 'image/QR.jpg';
+      preview.src = 'images2/QRn.png';
     }
   }
 

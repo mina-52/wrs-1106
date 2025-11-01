@@ -318,8 +318,8 @@ body {
 .lightbox-overlay.active { display: flex; animation: fadeIn 160ms ease-out; }
 .lightbox-content {
   position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
+  max-width: 95vw;
+  max-height: 95vh;
   background: #ffffff;
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -328,8 +328,8 @@ body {
 }
 .lightbox-img {
   display: block;
-  max-width: 90vw;
-  max-height: 80vh;
+  max-width: 95vw;
+  max-height: 90vh;
   object-fit: contain;
 }
 .lightbox-close {
