@@ -219,4 +219,31 @@
   setInterval(nextSlide, SLIDE_INTERVAL);
 })();
 
+// Scroll to top on page load
+(function () {
+  // ページ読み込み時に一番上から表示
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  
+  // ページ読み込み完了時にトップにスクロール
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant'
+    });
+  }
+  
+  // 即座にトップにスクロール
+  scrollToTop();
+  
+  // ページが完全に読み込まれた後にも実行（念のため）
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scrollToTop);
+  }
+  
+  window.addEventListener('load', scrollToTop);
+})();
+
 
