@@ -1,3 +1,28 @@
+// Scroll to top immediately (highest priority)
+(function () {
+  function scrollToTopImmediate() {
+    try {
+      window.scrollTo(0, 0);
+      if (document.documentElement) {
+        document.documentElement.scrollTop = 0;
+      }
+      if (document.body) {
+        document.body.scrollTop = 0;
+      }
+      if (document.scrollingElement) {
+        document.scrollingElement.scrollTop = 0;
+      }
+    } catch (e) {}
+  }
+  // Execute immediately, even before DOM is ready
+  scrollToTopImmediate();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scrollToTopImmediate);
+  } else {
+    scrollToTopImmediate();
+  }
+})();
+
 // Minimal interactivity for System 5 (QR)
 (function () {
   const input = document.getElementById('qr-input');
@@ -130,7 +155,7 @@
   const buttons = tabs.querySelectorAll('button[data-target]');
   const sections = document.querySelectorAll('.portfolio-section');
 
-  function activate(targetSelector) {
+  function activate(targetSelector, preventScroll) {
     sections.forEach((sec) => {
       if (targetSelector === '#software') {
         // Show all software sections (multiple)
@@ -159,7 +184,7 @@
       ng.classList.toggle('active', shouldShow);
     });
     try { localStorage.setItem('portfolioTab', targetSelector); } catch (_) {}
-    if (history && history.replaceState) {
+    if (history && history.replaceState && !preventScroll) {
       history.replaceState(null, '', targetSelector);
     }
   }
@@ -171,14 +196,34 @@
   }
   bindButtons(document);
 
+  // ハッシュがある場合のみアクティブ化し、ない場合はデフォルトでソフトウェアを表示するがスクロールしない
   const saved = (function(){ try { return localStorage.getItem('portfolioTab'); } catch (_) { return null; }})();
-  const hash = location.hash === '#hardware' ? '#hardware' : '#software';
-  activate(saved || hash || '#software');
+  const hash = location.hash;
+  
+  // ハッシュがある場合のみスクロールを許可
+  if (hash === '#hardware') {
+    activate('#hardware');
+  } else if (hash === '#software') {
+    activate('#software');
+  } else {
+    // ハッシュがない場合は、デフォルトでソフトウェアを表示するがスクロールしない
+    activate(saved || '#software', true);
+    // ハッシュをクリア（トップから表示するため）
+    if (history && history.replaceState) {
+      history.replaceState(null, '', window.location.pathname);
+    }
+  }
 })();
 
-// Handle hash navigation on page load
+// Handle hash navigation on page load (only if hash exists)
 (function () {
-  if (location.hash === '#software') {
+  const hash = location.hash;
+  // ハッシュがない場合は何もしない（トップから表示）
+  if (!hash || hash === '') {
+    return;
+  }
+  
+  if (hash === '#software') {
     const portfolioTabs = document.getElementById('portfolio-tabs');
     if (portfolioTabs) {
       const softwareTab = portfolioTabs.querySelector('button[data-target="#software"]');
