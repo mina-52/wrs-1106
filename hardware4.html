@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ハードウェア4｜ノーマル機体</title>
+    <title>ハードウェア4｜デフォルト装備機体（照明＋プロペラガード）</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header class="site-header">
         <div class="container">
-            <h1>ハードウェア4：ノーマル機体</h1>
+            <h1>ハードウェア4：デフォルト装備機体（照明＋プロペラガード）</h1>
             <nav class="top-nav">
                 <a href="index.html" data-tooltip="トップへ戻る">トップ</a>
                 <a href="hardware1.html" data-tooltip="防水機体">ハードウェア1</a>
@@ -21,24 +21,68 @@
 
     <main class="container">
         <section class="system-section">
+            <h2>課題説明</h2>
+            <div class="text-panel">
+                <p>災害地において狭隘かつ暗所環境で安全性と視認性を両立しながら安定した飛行を行う必要がある。</p>
+            </div>
+        </section>
+
+        <section class="system-section">
             <h2>機体概要</h2>
             <div class="text-panel">
-                <p>汎用運用を想定した標準構成の機体です。重量バランス、航続時間、信頼性を重視し、各種ペイロードに柔軟に対応できるプラットフォームです。なお、本機体は<strong>操学舘ドローンスクール</strong>が設計・制作しました。</p>
+                <p>DJI Avata 2をベースに照明およびプロペラガードとバッテリーユニットを一体化したモジュールを標準装備した基本モデル。なお、本機体は<strong>WRS2025 TeamSogakkn</strong>が設計・制作しました。</p>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <img src="images2/① デフォルト装備機体/1_正面_ デフォルト装備機体.jpg" alt="デフォルト装備機体 正面">
+                <img src="images2/① デフォルト装備機体/2_斜め上_ デフォルト装備機体.jpg" alt="デフォルト装備機体 斜め上">
+                <img src="images2/① デフォルト装備機体/3_斜め下_ デフォルト装備機体.jpg" alt="デフォルト装備機体 斜め下">
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>実装概要</h2>
+            <div class="text-panel">
                 <ul>
-                    <li>標準推進・電源構成と拡張性</li>
-                    <li>整備性、安全性、信頼性のバランス</li>
-                    <li>ペイロード搭載の共通インターフェース</li>
+                    <li><strong>照明</strong>：高輝度LEDを機体上下方向に配置</li>
+                    <li><strong>バッテリー</strong>：高輝度照明を長時間維持できる高出力バッテリーを機体の重心バランスを保つ位置に配置</li>
+                    <li><strong>プロペラガード一体型バッテリーユニット</strong>：前後プロペラフレーム間の段差や縁部での引っ掛かりを防ぐガード形状とし小型化を図るためにバッテリーユニットを統合した構造</li>
                 </ul>
             </div>
         </section>
 
         <section class="system-section">
-            <h2>主要構成</h2>
+            <h2>仕様</h2>
             <div class="text-panel">
                 <ul>
-                    <li>機体フレーム、降着装置</li>
-                    <li>制御・通信（FC/無線/GNSS）</li>
-                    <li>安全・フェイルセーフ・ログ</li>
+                    <li><strong>照射範囲</strong>：機体可視カメラの視野角度（チルト上下方向 −85°〜+80°）およびビジョンセンサ視認域</li>
+                    <li><strong>照明用バッテリー</strong>：保護回路付き 850mAh リチウムイオンバッテリー ×2本</li>
+                    <li><strong>プロペラガード</strong>：素材 TPU 重量 13.5g</li>
+                    <li><strong>バッテリーユニット</strong>：素材 PLA 重量36.6g（LED含む）</li>
+                    <li><strong>モジュール総重量</strong>：約50g</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>操作</h2>
+            <div class="text-panel">
+                <p><strong>照明ON/OFF</strong>：ネジ式バッテリーケースを突き当たりまで締め込むことで電源が投入される</p>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>設計上の工夫</h2>
+            <div class="text-panel">
+                <ul>
+                    <li><strong>機体サイズ</strong>：狭隘空間の開口部を容易に通過できるよう、また通過できる空間が制限されないように機体サイズ変化を最小限に抑え操縦安定性を維持</li>
+                    <li><strong>構造一体化</strong>：プロペラガード,バッテリーユニット,電源機構を一体化することで部品点数を最小化し軽量化を徹底するとともに整備性を向上</li>
+                    <li><strong>遠隔復帰</strong>：墜落後も遠隔操作による復帰を可能とするためタートルモード機能を阻害しない構造を採用</li>
+                    <li><strong>ハレーション対策</strong>：照明の配置および拡散角を最適化し映像におけるハレーションの発生を最小化</li>
+                    <li><strong>耐衝撃性</strong>：墜落試験の結果を踏まえ破損しやすい箇所に肉厚を設けるまたは柔軟なTPU素材を採用し衝撃耐性を向上</li>
                 </ul>
             </div>
         </section>
@@ -46,7 +90,17 @@
 
     <footer class="site-footer">
         <div class="container">
-            <small>© 2025 WRS | STM 部門</small>
+            <div class="footer-content">
+                <small>© 2025 WRS | STM 部門</small>
+                <div class="footer-links">
+                    <a href="https://sogakkan.jp/" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        操学舘ドローンスクール
+                    </a>
+                    <a href="https://www.instagram.com/sds__school?igsh=MXFhcTIyZWtuYWFpOQ==" target="_blank" rel="noopener noreferrer" class="footer-link footer-link-instagram">
+                        Instagram
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 

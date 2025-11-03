@@ -176,4 +176,47 @@
   activate(saved || hash || '#software');
 })();
 
+// Handle hash navigation on page load
+(function () {
+  if (location.hash === '#software') {
+    const portfolioTabs = document.getElementById('portfolio-tabs');
+    if (portfolioTabs) {
+      const softwareTab = portfolioTabs.querySelector('button[data-target="#software"]');
+      if (softwareTab) {
+        softwareTab.click();
+      }
+    }
+    setTimeout(() => {
+      const portfolioSection = document.getElementById('portfolio-tabs-section');
+      if (portfolioSection) {
+        portfolioSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  }
+})();
+
+// Hero slideshow (drone images)
+(function () {
+  const slideshow = document.getElementById('hero-slideshow');
+  if (!slideshow) return;
+  
+  const slides = slideshow.querySelectorAll('.hero-slide');
+  if (slides.length < 2) return;
+  
+  let currentIndex = 0;
+  const SLIDE_INTERVAL = 4000; // 4秒間隔
+  
+  function nextSlide() {
+    slides[currentIndex].classList.remove('active');
+    currentIndex = (currentIndex + 1) % slides.length;
+    slides[currentIndex].classList.add('active');
+  }
+  
+  // 最初のスライドを表示
+  slides[0].classList.add('active');
+  
+  // 一定間隔でスライドを切り替え
+  setInterval(nextSlide, SLIDE_INTERVAL);
+})();
+
 

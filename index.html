@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Background decoration images -->
+    <img class="bg-decoration" src="images2/メンバー/yousu.jpg" alt="" style="top: 10%; left: 5%; width: 120px; height: 120px; transform: rotate(-5deg);">
+    <img class="bg-decoration" src="images2/メンバー/yousu (2).jpg" alt="" style="top: 30%; right: 8%; width: 100px; height: 100px; transform: rotate(8deg);">
+    <img class="bg-decoration" src="images2/メンバー/yousu3.jpg" alt="" style="bottom: 25%; left: 3%; width: 130px; height: 130px; transform: rotate(-10deg);">
+    <img class="bg-decoration" src="images2/メンバー/yousu4.jpg" alt="" style="top: 50%; right: 12%; width: 110px; height: 110px; transform: rotate(12deg);">
+    <img class="bg-decoration" src="images2/メンバー/yousu.jpg" alt="" style="bottom: 15%; right: 5%; width: 95px; height: 95px; transform: rotate(-7deg);">
+    <img class="bg-decoration" src="images2/メンバー/yousu3.jpg" alt="" style="top: 70%; left: 10%; width: 105px; height: 105px; transform: rotate(5deg);">
+    
     <header class="site-header">
         <div class="container">
             <h1>WRS ポートフォリオ（STM 部門）</h1>
@@ -20,10 +28,10 @@
                     <a href="system5.html" data-tooltip="QRコード認識">システム5: QRコード認識</a>
                 </nav>
                 <nav class="top-nav nav-group" data-scope="hardware">
-                    <a href="hardware1.html" data-tooltip="防水機体">HW1: 防水機体</a>
-                    <a href="hardware2.html" data-tooltip="ビー玉機体">HW2: ビー玉機体</a>
-                    <a href="hardware3.html" data-tooltip="ふき取り機体">HW3: ふき取り機体</a>
-                    <a href="hardware4.html" data-tooltip="ノーマル機体">HW4: ノーマル機体</a>
+                    <a href="hardware1.html" data-tooltip="防水機体（IPX2相当）">HW1: 防水機体</a>
+                    <a href="hardware2.html" data-tooltip="サンプル回収機体（ビー玉回収）">HW2: サンプル回収機体</a>
+                    <a href="hardware3.html" data-tooltip="拭き取り機体">HW3: 拭き取り機体</a>
+                    <a href="hardware4.html" data-tooltip="デフォルト装備機体（照明＋プロペラガード）">HW4: デフォルト装備機体</a>
                 </nav>
                 <div class="tabs tabs--mini" id="header-tabs">
                     <button type="button" data-target="#software" class="active">ソフトウェア</button>
@@ -38,13 +46,16 @@
             <div class="hero-inner">
                 <div class="hero-copy">
                     <h2>Drone x WRS システムポートフォリオ</h2>
-                    <p>災害対応・検出・追跡・認識を、ドローンの現場運用を意識したUIで整理。</p>
-                    <a class="cta" href="#system1">システム一覧を見る</a>
+                    <p>操学舘ドローンスクール×関西学院大学</p>
+                    <div class="hero-academic">産学連携</div>
                 </div>
-                <div class="hero-media" style="background-image:url('image/AVATA2_simple.jpg');"></div>
+                <div class="hero-media" id="hero-slideshow">
+                    <div class="hero-slide active" style="background-image:url('image/AVATA2_simple.jpg');"></div>
+                    <div class="hero-slide" style="background-image:url('images2/メンバー/top.jpg');"></div>
+                </div>
             </div>
         </section>
-        <section class="system-section">
+        <section class="system-section" id="portfolio-tabs-section">
             <div class="tabs" id="portfolio-tabs">
                 <button type="button" data-target="#software" class="active">ソフトウェア</button>
                 <button type="button" data-target="#hardware">ハードウェア</button>
@@ -61,9 +72,40 @@
         </section>
 
         <section class="system-section portfolio-section active" id="software">
+            <h2>産学連携パートナー</h2>
+            <div class="partner-grid">
+                <div class="partner-card">
+                    <h3>操学舘ドローンスクール</h3>
+                    <div class="partner-links">
+                        <a href="https://sogakkan.jp/" target="_blank" rel="noopener noreferrer" class="partner-link">ホームページ</a>
+                        <a href="https://www.instagram.com/sds__school?igsh=MXFhcTIyZWtuYWFpOQ==" target="_blank" rel="noopener noreferrer" class="partner-link partner-link-instagram">Instagram</a>
+                    </div>
+                    <div class="text-panel" style="margin-top: 12px;">
+                        <p>「人とテクノロジーが調和した社会」を目指すべき時期に来ています。操学舘は、テクノロジーに頼り過ぎず、人を排除しない世界を目指し、「リモートモビリティ」に関する最新技術と技能を提供する「学び直しの道場」として、職業能力向上を支援します。操学舘は、資格取得から実践訓練まで、すべてのサービスを提供し、他の産業分野でも高いスキルの習得を支援します。</p>
+                        <p style="margin-top: 12px;"><strong>今回のWRSプロジェクトではハードウェアの作成と操縦を担当</strong></p>
+                    </div>
+                </div>
+                
+                <div class="partner-card">
+                    <h3>関西学院大学 山田ゼミ</h3>
+                    <div class="partner-links">
+                        <a href="https://blackmouse8.sakura.ne.jp/top.html" target="_blank" rel="noopener noreferrer" class="partner-link">ゼミホームページ</a>
+                    </div>
+                    <div class="text-panel" style="margin-top: 12px;">
+                        <p>山田孝子教授のご指導の下文理融合学部の強みを生かし、広い視野を持って研究を行っています。当ゼミでは、「最先端技術の融合とその社会的影響」を中心に多様な研究を行い、実社会で直面する課題を解決するためのプロジェクトを推進します。特に、ドローン技術を活用した研究は注目されており、技術革新が経営や業務プロセスに与える影響を探求しています。学生は個人だけでなく、チーム単位でも実践的な問題解決能力を磨いています。</p>
+                        <p style="margin-top: 12px;"><strong>今回のWRSではソフトウェアの開発を担当</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="system-section portfolio-section active" id="software">
             <h2>このポートフォリオについて</h2>
             <div class="text-panel">
-                <p>本サイトでは、WRS に向けて STM 部門で作成したシステムの UI 構成と概要を紹介しています。各システムのページでは、画面配置（左上・右上・右下・左下）の意図をテキストで説明し、画像は用意されたサンプルのみをギャラリーとして掲載しています。ギャラリー画像はクリックで拡大（ライトボックス表示）できます。</p>
+                <p>本ポートフォリオサイトでは、<strong>WRS2025 TeamSogakkn</strong>としてWorld Robot Summit（WRS）STMチャレンジに向けて開発したソフトウェアシステムとハードウェア機体について、詳細な情報を紹介しています。</p>
+                
+                <h3 style="margin-top: 20px; margin-bottom: 12px; color: var(--accent); font-size: 18px;">ソフトウェアについて</h3>
+                <p>各ソフトウェアシステムのページでは、画面配置（左上・右上・右下・左下）の意図をテキストで説明し、画像は用意されたサンプルをギャラリーとして掲載しています。ギャラリー画像はクリックで拡大（ライトボックス表示）できます。</p>
                 <ul>
                     <li>システム1：ランドルト環認識</li>
                     <li>システム2：数字＆ランドルト認識</li>
@@ -71,148 +113,173 @@
                     <li>システム4：危険物ラベル認識</li>
                     <li>システム5：QRコード認識</li>
                 </ul>
-                <p>各ページは上部ナビゲーションから移動できます。詳細はそれぞれのページをご覧ください。</p>
+
+                <h3 style="margin-top: 24px; margin-bottom: 12px; color: var(--accent); font-size: 18px;">ハードウェアについて</h3>
+                <p>各ハードウェア機体のページでは、課題説明、機体概要、実装概要、仕様、操作手順、設計上の工夫などを詳しく説明しています。各機体の画像もギャラリー形式で掲載しています。</p>
+                <ul>
+                    <li>ハードウェア1：防水機体（IPX2相当）</li>
+                    <li>ハードウェア2：サンプル回収機体（ビー玉回収）</li>
+                    <li>ハードウェア3：拭き取り機体</li>
+                    <li>ハードウェア4：デフォルト装備機体（照明＋プロペラガード）</li>
+                </ul>
+
+                <p style="margin-top: 20px;"><strong>各ページは上部ナビゲーションから移動できます。</strong>詳細はそれぞれのページをご覧ください。</p>
             </div>
         </section>
-        <section class="system-section">
+
+        <section class="system-section portfolio-section active" id="software">
             <h2>各システムの概要</h2>
             <p class="desc">下記リンクから各システムの詳細ページへ移動し、ギャラリー画像をクリックして拡大表示できます。</p>
         </section>
-        <!-- Overview keeps existing previews -->
-        <section id="system1" class="system-section portfolio-section active" >
-            <h2>システム1：ランドルト環認識システム <a href="system1.html" class="cta" style="margin-left:12px;">ランドルト環ページへ</a></h2>
-            <div class="layout-notes">
-                <ul>
-                    <li><strong>左上</strong>: YOLO によるリアルタイム認識</li>
-                    <li><strong>右上</strong>: 認識した画像をノイズ除去し拡大表示</li>
-                    <li><strong>右下</strong>: 二物体を同時に認識した際の拡大表示（右上と同仕様）</li>
-                    <li><strong>左下</strong>: ランドルト環の穴の位置を画像処理して表示</li>
-                </ul>
-            </div>
-            <div class="text-panel">
-                <p><strong>課題説明</strong>: ランドルト環の切れ目方向をリアルタイムに推定し、複数対象にも頑健に対応する認識・可視化を行う課題。</p>
-            </div>
-            <div class="gallery">
-                <img src="images2/randoruto-wn1.png" alt="ランドルト環 W">
-                <img src="images2/randoruto-wn2.png" alt="ランドルト環 W2">
-                <img src="images2/randoruto-bn1.png" alt="ランドルト環 B">
-                <img src="images2/randoruto-bn2.png" alt="ランドルト環 B2">
-            </div>
-        </section>
 
-        <!-- System 2 -->
-        <section id="system2" class="system-section portfolio-section active" >
-            <h2>システム2：数字 & ランドルト認識システム <a href="system2.html" class="cta" style="margin-left:12px;">数字&ランドルトページへ</a></h2>
-            <div class="layout-notes">
-                <ul>
-                    <li><strong>左上</strong>: YOLO によるリアルタイム認識</li>
-                    <li><strong>右上</strong>: 認識画像のノイズ除去・拡大表示</li>
-                    <li><strong>右下</strong>: 二物体同時認識の拡大表示</li>
-                    <li><strong>左下</strong>: 認識した情報の文字表示</li>
-                </ul>
-            </div>
-            <div class="text-panel">
-                <p><strong>課題説明</strong>: 数字とランドルト環を同一パイプラインで同時に検出・分類し、結果を視覚とテキストで即時提示する統合認識課題。</p>
-            </div>
-            <div class="gallery">
-                <img src="images2/number-n.png" alt="数字 認識サンプル">
-            </div>
-            <div class="panel" data-label="テキスト出力">
-                <div class="text-panel" id="number-results">
-                    <ul>
-                        <li>認識ラベル: 7（信頼度 0.92）</li>
-                        <li>認識ラベル: 3（信頼度 0.88）</li>
-                        <li>ランドルト環: 右開き（信頼度 0.90）</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+        <section class="system-section portfolio-section active" id="software" style="scroll-margin-top: 80px;">
+            <div class="software-cards">
+                <a class="software-card" href="system1.html">
+                    <div class="software-card-image">
+                        <img src="images2/randoruto-wn1.png" alt="ランドルト環認識システム">
+                    </div>
+                    <div class="software-card-content">
+                        <h3>システム1：ランドルト環認識システム</h3>
+                        <p class="software-card-description">ランドルト環の切れ目方向をリアルタイムに推定し、複数対象にも頑健に対応する認識・可視化を行う課題。</p>
+                        <div class="software-card-features">
+                            <span class="feature-tag">YOLO認識</span>
+                            <span class="feature-tag">画像処理</span>
+                            <span class="feature-tag">リアルタイム</span>
+                        </div>
+                    </div>
+                </a>
 
-        <!-- System 3 -->
-        <section id="system3" class="system-section portfolio-section active" >
-            <h2>システム3：モーション検出 <a href="system3.html" class="cta" style="margin-left:12px;">モーションページへ</a></h2>
-            <div class="layout-notes">
-                <ul>
-                    <li><strong>表示内容</strong>: YOLO で学習した物体の検出と追跡を行い、経路やバウンディングボックスを表示</li>
-                </ul>
-            </div>
-            <div class="text-panel">
-                <p><strong>課題説明</strong>: 動体をリアルタイムに検出し、追跡・動きの可視化を行うことで安全監視や進捗観察を支援する課題。</p>
-            </div>
-            <div class="gallery">
-                <img src="images2/motion-n.png" alt="モーション検出">
-            </div>
-        </section>
+                <a class="software-card" href="system2.html">
+                    <div class="software-card-image">
+                        <img src="images2/number-n.png" alt="数字 & ランドルト認識システム">
+                    </div>
+                    <div class="software-card-content">
+                        <h3>システム2：数字 & ランドルト認識システム</h3>
+                        <p class="software-card-description">数字とランドルト環を同一パイプラインで同時に検出・分類し、結果を視覚とテキストで即時提示する統合認識課題。</p>
+                        <div class="software-card-features">
+                            <span class="feature-tag">統合認識</span>
+                            <span class="feature-tag">テキスト出力</span>
+                            <span class="feature-tag">複数検出</span>
+                        </div>
+                    </div>
+                </a>
 
-        <!-- System 4 -->
-        <section id="system4" class="system-section portfolio-section active" >
-            <h2>システム4：危険物ラベル認識 <a href="system4.html" class="cta" style="margin-left:12px;">危険物ページへ</a></h2>
-            <div class="layout-notes">
-                <ul>
-                    <li><strong>左上</strong>: YOLO によるリアルタイムの危険物ラベル検出</li>
-                    <li><strong>右上</strong>: 検出領域をノイズ除去して拡大表示</li>
-                    <li><strong>右下</strong>: 複数ラベル同時検出時の拡大表示</li>
-                    <li><strong>左下</strong>: ラベル属性・クラス・信頼度などのテキスト出力</li>
-                </ul>
-            </div>
-            <div class="text-panel">
-                <p><strong>課題説明</strong>: 容器や掲示物から危険物ラベル（GHS 等）を自動認識し、クラスや注意喚起情報を提示して安全確認を支援する課題。</p>
-            </div>
-            <div class="gallery">
-                <img src="images2/kikinbutu-n.png" alt="危険物ラベル">
-            </div>
-            <div class="panel" data-label="テキスト出力">
-                <div class="text-panel">
-                    <ul>
-                        <li>ラベル: 可燃性（Flammable）</li>
-                        <li>信頼度: 0.94</li>
-                        <li>クラス: GHS02</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+                <a class="software-card" href="system3.html">
+                    <div class="software-card-image">
+                        <img src="images2/motion-n.png" alt="モーション検出">
+                    </div>
+                    <div class="software-card-content">
+                        <h3>システム3：モーション検出</h3>
+                        <p class="software-card-description">動体をリアルタイムに検出し、追跡・動きの可視化を行うことで安全監視や進捗観察を支援する課題。</p>
+                        <div class="software-card-features">
+                            <span class="feature-tag">動体検出</span>
+                            <span class="feature-tag">追跡</span>
+                            <span class="feature-tag">可視化</span>
+                        </div>
+                    </div>
+                </a>
 
-        <!-- System 5 -->
-        <section id="system5" class="system-section portfolio-section active" >
-            <h2>システム5：QRコード認識 <a href="system5.html" class="cta" style="margin-left:12px;">QRページへ</a></h2>
-            <div class="layout-notes">
-                <ul>
-                    <li><strong>左上</strong>: QRコードの取得（カメラ/画像入力）</li>
-                    <li><strong>左下</strong>: 認識したQR情報の保存リスト</li>
-                    <li><strong>右上</strong>: 左下で選択したQRの内容を表示</li>
-                    <li><strong>右下</strong>: 選択QRに対応する画像を表示</li>
-                </ul>
+                <a class="software-card" href="system4.html">
+                    <div class="software-card-image">
+                        <img src="images2/kikinbutu-n.png" alt="危険物ラベル認識">
+                    </div>
+                    <div class="software-card-content">
+                        <h3>システム4：危険物ラベル認識</h3>
+                        <p class="software-card-description">容器や掲示物から危険物ラベル（GHS 等）を自動認識し、クラスや注意喚起情報を提示して安全確認を支援する課題。</p>
+                        <div class="software-card-features">
+                            <span class="feature-tag">GHS認識</span>
+                            <span class="feature-tag">安全確認</span>
+                            <span class="feature-tag">自動認識</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="software-card" href="system5.html">
+                    <div class="software-card-image">
+                        <img src="images2/QRn.png" alt="QRコード認識">
+                    </div>
+                    <div class="software-card-content">
+                        <h3>システム5：QRコード認識</h3>
+                        <p class="software-card-description">QRコードを高速に読み取り、リンクやテキスト等の内容を即時に提示・参照できるようにし、現場の情報取得を効率化する課題。</p>
+                        <div class="software-card-features">
+                            <span class="feature-tag">QR読み取り</span>
+                            <span class="feature-tag">情報取得</span>
+                            <span class="feature-tag">高速処理</span>
+                        </div>
+                    </div>
+                </a>
             </div>
-            <div class="text-panel">
-                <p><strong>課題説明</strong>: QRコードを高速に読み取り、リンクやテキスト等の内容を即時に提示・参照できるようにし、現場の情報取得を効率化する課題。</p>
-            </div>
-            <div class="gallery">
-                <img src="images2/QRn.png" alt="QR サンプル">
-            </div>
-            
         </section>
 
         <section class="system-section portfolio-section" id="hardware">
-            <h2>ハードウェア（準備中）</h2>
+            <h2>このポートフォリオについて</h2>
             <div class="text-panel">
-                <p>ハードウェア関連のシステムや機体構成、センサー・ジンバル・通信系などのポートフォリオを今後追加していきます。なお、掲載する各機体は<strong>操学舘ドローンスクール</strong>が設計・制作したものです。</p>
+                <p>本ポートフォリオサイトでは、<strong>WRS2025 TeamSogakkn</strong>としてWorld Robot Summit（WRS）STMチャレンジに向けて開発したソフトウェアシステムとハードウェア機体について、詳細な情報を紹介しています。</p>
+                
+                <h3 style="margin-top: 20px; margin-bottom: 12px; color: var(--accent); font-size: 18px;">ソフトウェアについて</h3>
+                <p>各ソフトウェアシステムのページでは、画面配置（左上・右上・右下・左下）の意図をテキストで説明し、画像は用意されたサンプルをギャラリーとして掲載しています。ギャラリー画像はクリックで拡大（ライトボックス表示）できます。</p>
+                <ul>
+                    <li>システム1：ランドルト環認識</li>
+                    <li>システム2：数字＆ランドルト認識</li>
+                    <li>システム3：モーション検出</li>
+                    <li>システム4：危険物ラベル認識</li>
+                    <li>システム5：QRコード認識</li>
+                </ul>
+
+                <h3 style="margin-top: 24px; margin-bottom: 12px; color: var(--accent); font-size: 18px;">ハードウェアについて</h3>
+                <p>各ハードウェア機体のページでは、課題説明、機体概要、実装概要、仕様、操作手順、設計上の工夫などを詳しく説明しています。各機体の画像もギャラリー形式で掲載しています。</p>
+                <ul>
+                    <li>ハードウェア1：防水機体（IPX2相当）</li>
+                    <li>ハードウェア2：サンプル回収機体（ビー玉回収）</li>
+                    <li>ハードウェア3：拭き取り機体</li>
+                    <li>ハードウェア4：デフォルト装備機体（照明＋プロペラガード）</li>
+                </ul>
+
+                <p style="margin-top: 20px;"><strong>各ページは上部ナビゲーションから移動できます。</strong>詳細はそれぞれのページをご覧ください。</p>
+            </div>
+        </section>
+
+        <section class="system-section portfolio-section" id="hardware">
+            <h2>WRS2025 TeamSogakkn ハードウェア説明</h2>
+            <div class="text-panel">
+                <p>WRS2025に向けて開発した4種類の機体について、詳細な仕様と設計思想を紹介します。なお、掲載する各機体は<strong>WRS2025 TeamSogakkn</strong>が設計・制作したものです。</p>
             </div>
             <div class="hardware-placeholder">
+                <a class="hardware-card" href="hardware4.html">
+                    <div class="hardware-card-image">
+                        <img src="images2/① デフォルト装備機体/1_正面_ デフォルト装備機体.jpg" alt="デフォルト装備機体">
+                    </div>
+                    <div class="hardware-card-content">
+                        <h3>ハードウェア4：デフォルト装備機体（照明＋プロペラガード）</h3>
+                        <p>DJI Avata 2をベースに照明およびプロペラガードとバッテリーユニットを一体化したモジュールを標準装備した基本モデル。</p>
+                    </div>
+                </a>
                 <a class="hardware-card" href="hardware1.html">
-                    <h3>ハードウェア1：防水機体</h3>
-                    <p>防水設計、シーリング、防滴ペイロード。</p>
+                    <div class="hardware-card-image">
+                        <img src="images2/②防水機体/1_防水機体.jpg" alt="防水機体">
+                    </div>
+                    <div class="hardware-card-content">
+                        <h3>ハードウェア1：防水機体（IPX2相当）</h3>
+                        <p>デフォルト装備機体をベースに防水処理を施行しIPX2相当の防水性能を備えたモデル。災害現場での点検や探索飛行対応を想定。</p>
+                    </div>
                 </a>
                 <a class="hardware-card" href="hardware2.html">
-                    <h3>ハードウェア2：ビー玉機体</h3>
-                    <p>転がり耐性、着地挙動、接地センサー。</p>
+                    <div class="hardware-card-image">
+                        <img src="images2/③ サンプル回収機体/1_斜め上_サンプル回収.jpg" alt="サンプル回収機体">
+                    </div>
+                    <div class="hardware-card-content">
+                        <h3>ハードウェア2：サンプル回収機体（ビー玉回収）</h3>
+                        <p>デフォルト装備機体をベースに機体下部へサンプル回収モジュールを搭載。二輪走行機構により空中飛行と地上走行を切り替え可能。</p>
+                    </div>
                 </a>
                 <a class="hardware-card" href="hardware3.html">
-                    <h3>ハードウェア3：ふき取り機体</h3>
-                    <p>拭取りペイロード、接触圧制御、表面追従。</p>
-                </a>
-                <a class="hardware-card" href="hardware4.html">
-                    <h3>ハードウェア4：ノーマル機体</h3>
-                    <p>汎用構成、拡張性、信頼性。</p>
+                    <div class="hardware-card-image">
+                        <img src="images2/④ 拭き取り機体/1_斜め上_拭取り機体.jpg" alt="拭き取り機体">
+                    </div>
+                    <div class="hardware-card-content">
+                        <h3>ハードウェア3：拭き取り機体</h3>
+                        <p>デフォルト装備機体をベースに機体上部へ拭き取りモジュールを搭載。アーム先端に布材を装着し対象面へ押し当てて拭き取り動作を行う。</p>
+                    </div>
                 </a>
             </div>
         </section>
@@ -220,7 +287,17 @@
 
     <footer class="site-footer">
         <div class="container">
-            <small>© 2025 WRS | STM 部門</small>
+            <div class="footer-content">
+                <small>© 2025 WRS | STM 部門</small>
+                <div class="footer-links">
+                    <a href="https://sogakkan.jp/" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        操学舘ドローンスクール
+                    </a>
+                    <a href="https://www.instagram.com/sds__school?igsh=MXFhcTIyZWtuYWFpOQ==" target="_blank" rel="noopener noreferrer" class="footer-link footer-link-instagram">
+                        Instagram
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 

@@ -3,43 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ハードウェア2｜ビー玉機体</title>
+    <title>ハードウェア2｜サンプル回収機体（ビー玉回収）</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header class="site-header">
         <div class="container">
-            <h1>ハードウェア2：ビー玉機体</h1>
+            <h1>ハードウェア2：サンプル回収機体（ビー玉回収）</h1>
             <nav class="top-nav">
                 <a href="index.html" data-tooltip="トップへ戻る">トップ</a>
                 <a href="hardware1.html" data-tooltip="防水機体">ハードウェア1</a>
                 <a href="hardware3.html" data-tooltip="ふき取り機体">ハードウェア3</a>
-                <a href="hardware4.html" data-tooltip="ノーマル機体">ハードウェア4</a>
+                <a href="hardware4.html" data-tooltip="デフォルト装備機体">ハードウェア4</a>
             </nav>
         </div>
     </header>
 
     <main class="container">
         <section class="system-section">
+            <h2>課題説明</h2>
+            <div class="text-panel">
+                <p>フィールド内に設置されたサンプル（glass balls）を機内に取り込みコールドゾーンまで搬送し所定位置に回収する。</p>
+            </div>
+        </section>
+
+        <section class="system-section">
             <h2>機体概要</h2>
             <div class="text-panel">
-                <p>「ビー玉機体」は狭隘部や床面トレースの検証用に、転がり耐性や接地センサーの検証を想定した実験機です。接触時の衝撃低減と姿勢安定性を重視します。なお、本機体は<strong>操学舘ドローンスクール</strong>が設計・制作しました。</p>
+                <p>デフォルト装備機体をベースに機体下部へサンプル回収モジュールを搭載したモデル。回収モジュールに二輪走行機構を搭載し状況に応じて空中飛行と地上走行を切り替え可能。なお、本機体は<strong>WRS2025 TeamSogakkn</strong>が設計・制作しました。</p>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <img src="images2/③ サンプル回収機体/1_斜め上_サンプル回収.jpg" alt="サンプル回収機体 斜め上">
+                <img src="images2/③ サンプル回収機体/2_横_サンプル回収.jpg" alt="サンプル回収機体 横">
+                <img src="images2/③ サンプル回収機体/3_正面_サンプル回収.jpg" alt="サンプル回収機体 正面">
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>実装概要</h2>
+            <div class="text-panel">
                 <ul>
-                    <li>着地・転がり挙動の検証</li>
-                    <li>底面保護・フレーム設計</li>
-                    <li>接地センサー（近接/距離）の取り付け</li>
-                    <li>安全性・フェイルセーフ</li>
+                    <li><strong>回収機構</strong>：遠隔操作で収納コンテナを開閉しサンプルの回収動作を行う</li>
+                    <li><strong>収納コンテナ</strong>：機体カメラでサンプルの位置と回収状況を確認できるスリット入り構造とし サンプルの設置状況に応じて稼働部から脱着可能な交換式コンテナとした</li>
+                    <li><strong>走行機構</strong>：ドローンのダウンウォッシュによりサンプルが移動し接近が困難な場合 着陸後に地上走行可能な機構を搭載</li>
+                    <li><strong>通信システム</strong>：RadioLink製送信機T8Sと受信機R8EFを使用し 2.4GHz帯の安定した無線通信</li>
                 </ul>
             </div>
         </section>
 
         <section class="system-section">
-            <h2>主要構成</h2>
+            <h2>仕様</h2>
             <div class="text-panel">
                 <ul>
-                    <li>保護リング／球面部材の固定方法</li>
-                    <li>推進・電源の配置最適化</li>
-                    <li>低速制御・姿勢保持チューニング</li>
+                    <li><strong>対象物</strong>：ガラス製の球体 直径約30mm</li>
+                    <li><strong>素材</strong>：ABS(フレーム•コンテナ) シリコンゴム（タイヤ）</li>
+                    <li><strong>重量</strong>：総重量99g</li>
+                    <li><strong>通信距離</strong>：最大 約2,000m（環境条件による）</li>
+                    <li><strong>技適マーク</strong>：取得済み機器（日本国内使用可）</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>操作</h2>
+            <div class="text-panel">
+                <ul>
+                    <li><strong>回収（コンテナ開閉）</strong>：送信機（T8S）の3ウェイスイッチによりコンテナを全開・半開・全閉の3段階で制御</li>
+                    <li><strong>走行</strong>：送信機（T8S）の左右スティック操作により各タイヤを独立して正転・逆転させ移動を行う</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>設計上の工夫</h2>
+            <div class="text-panel">
+                <ul>
+                    <li><strong>取り込み性</strong>：開発段階においてビー玉の特性上コンテナを閉じる際にビー玉を前方へ押し出してしまい回収できない事象が発生した そこでビー玉が接触する底面に逃げスリットと緩やかな傾斜を設け押し出しを防止しその場で確実に回収できるよう設計した</li>
+                    <li><strong>メンテナンス性</strong>：構造上コンテナ部分が墜落時に最も破損リスクが高い状況であったため 破損時の修復や環境に応じたコンテナの変更が可能となるようコンテナを容易にモジュールから脱着できる構造とした</li>
                 </ul>
             </div>
         </section>
@@ -47,7 +91,17 @@
 
     <footer class="site-footer">
         <div class="container">
-            <small>© 2025 WRS | STM 部門</small>
+            <div class="footer-content">
+                <small>© 2025 WRS | STM 部門</small>
+                <div class="footer-links">
+                    <a href="https://sogakkan.jp/" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        操学舘ドローンスクール
+                    </a>
+                    <a href="https://www.instagram.com/sds__school?igsh=MXFhcTIyZWtuYWFpOQ==" target="_blank" rel="noopener noreferrer" class="footer-link footer-link-instagram">
+                        Instagram
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 

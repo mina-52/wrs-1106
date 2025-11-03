@@ -3,44 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ハードウェア1｜防水機体</title>
+    <title>ハードウェア1｜防水機体（IPX2相当）</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header class="site-header">
         <div class="container">
-            <h1>ハードウェア1：防水機体</h1>
+            <h1>ハードウェア1：防水機体（IPX2相当）</h1>
             <nav class="top-nav">
                 <a href="index.html" data-tooltip="トップへ戻る">トップ</a>
                 <a href="hardware2.html" data-tooltip="ビー玉機体">ハードウェア2</a>
                 <a href="hardware3.html" data-tooltip="ふき取り機体">ハードウェア3</a>
-                <a href="hardware4.html" data-tooltip="ノーマル機体">ハードウェア4</a>
+                <a href="hardware4.html" data-tooltip="デフォルト装備機体">ハードウェア4</a>
             </nav>
         </div>
     </header>
 
     <main class="container">
         <section class="system-section">
+            <h2>課題説明</h2>
+            <div class="text-panel">
+                <p>災害地での雨天や屋内の漏水・結露環境など天候や場所を問わず飛行が求められる状況で防水機体による安定した飛行を行う必要がある。</p>
+            </div>
+        </section>
+
+        <section class="system-section">
             <h2>機体概要</h2>
             <div class="text-panel">
-                <p>水濡れ・飛沫・軽度の浸水に耐えることを想定した防水仕様の機体です。シール材や防水コネクタ、保護コーティングを採用し、現場での清掃や散水、降雨下での点検に対応します。なお、本機体は<strong>操学舘ドローンスクール</strong>が設計・制作しました。</p>
+                <p>デフォルト装備機体をベースに防水処理を施行しIPX2相当の防水性能を備えたモデル。災害現場での点検や探索飛行対応を想定。なお、本機体は<strong>WRS2025 TeamSogakkn</strong>が設計・制作しました。</p>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <img src="images2/②防水機体/1_防水機体.jpg" alt="防水機体">
+                <img src="images2/②防水機体/2_防水試験.jpg" alt="防水試験">
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>実装概要</h2>
+            <div class="text-panel">
                 <ul>
-                    <li>防水等級の目標と試験方法</li>
-                    <li>筐体シーリング、通気・熱設計</li>
-                    <li>防水コネクタ、ハーネス取り回し</li>
-                    <li>結露対策、ドレン設計</li>
+                    <li><strong>防水コーティング</strong>：機体全体にラバーコーティングを施しボディの隙間からの浸水を防止</li>
+                    <li><strong>防滴カバー</strong>：モーター上部と開口部を覆い上方向からの水滴侵入を防止</li>
+                    <li><strong>照明</strong>：密閉型カバー付きLEDを搭載し暗所での視認性を確保</li>
                 </ul>
             </div>
         </section>
 
         <section class="system-section">
-            <h2>主要構成</h2>
+            <h2>防水試験条件</h2>
+            <div class="text-panel">
+                <h3>散水条件</h3>
+                <ul>
+                    <li><strong>方法</strong>：上方からのシャワー噴霧（参考規格：IPX3）</li>
+                    <li><strong>時間</strong>：合計10分以上</li>
+                    <li><strong>角度</strong>：鉛直から±60°以内</li>
+                    <li><strong>流量</strong>：2850mℓ／分</li>
+                </ul>
+                <p>※IPX3の試験方法を参考に実施したが、規定の流量を再現できなかったため、本試験の防水性能評価はIPX2相当として扱う</p>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>仕様</h2>
             <div class="text-panel">
                 <ul>
-                    <li>推進系：モーター／プロペラ／ESC</li>
-                    <li>電源系：バッテリー／BMS／防水ケース</li>
-                    <li>制御・通信：FC、無線、GPS</li>
-                    <li>ペイロード：カメラ／ジンバル（防滴）</li>
+                    <li><strong>防水レベル</strong>：IPX2相当</li>
+                    <li><strong>重量</strong>：総重量337.5g（ノーマル機体）＋99.2g（照明 プロペラガード バッテリーケースを含む）</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>設計上の工夫</h2>
+            <div class="text-panel">
+                <ul>
+                    <li><strong>防水カバー</strong>：カメラ周辺の開口部は大きく水の侵入経路となる最も重要なポイントであった 一方でカメラの視認性も確保する必要があったため 高い耐衝撃性 透明度 加工性を併せ持つポリカーボネート素材を採用 これにより防水カバーを装着しても十分な視認性を維持することができた</li>
+                    <li><strong>保守性</strong>：防水コーティングが部分的に欠損 損傷した場合でも該当箇所のみを補修可能な施工方式とすることでメンテナンス性を大幅に向上させた</li>
                 </ul>
             </div>
         </section>
@@ -48,7 +90,17 @@
 
     <footer class="site-footer">
         <div class="container">
-            <small>© 2025 WRS | STM 部門</small>
+            <div class="footer-content">
+                <small>© 2025 WRS | STM 部門</small>
+                <div class="footer-links">
+                    <a href="https://sogakkan.jp/" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        操学舘ドローンスクール
+                    </a>
+                    <a href="https://www.instagram.com/sds__school?igsh=MXFhcTIyZWtuYWFpOQ==" target="_blank" rel="noopener noreferrer" class="footer-link footer-link-instagram">
+                        Instagram
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 

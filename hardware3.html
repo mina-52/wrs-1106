@@ -3,43 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ハードウェア3｜ふき取り機体</title>
+    <title>ハードウェア3｜拭き取り機体</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header class="site-header">
         <div class="container">
-            <h1>ハードウェア3：ふき取り機体</h1>
+            <h1>ハードウェア3：拭き取り機体</h1>
             <nav class="top-nav">
                 <a href="index.html" data-tooltip="トップへ戻る">トップ</a>
                 <a href="hardware1.html" data-tooltip="防水機体">ハードウェア1</a>
-                <a href="hardware2.html" data-tooltip="ビー玉機体">ハードウェア2</a>
-                <a href="hardware4.html" data-tooltip="ノーマル機体">ハードウェア4</a>
+                <a href="hardware2.html" data-tooltip="サンプル回収機体">ハードウェア2</a>
+                <a href="hardware4.html" data-tooltip="デフォルト装備機体">ハードウェア4</a>
             </nav>
         </div>
     </header>
 
     <main class="container">
         <section class="system-section">
+            <h2>課題説明</h2>
+            <div class="text-panel">
+                <p>フィールド内に設置された供試体（5×5cm 調査面）を拭き取り 拭き取った物質（マーカー）を回収し色と位置を特定する。</p>
+            </div>
+        </section>
+
+        <section class="system-section">
             <h2>機体概要</h2>
             <div class="text-panel">
-                <p>「ふき取り機体」は壁面や床面の清掃・拭取りタスクを目的とした装備を備える機体です。ペイロードにモップ/ローラー/ワイパーなどを搭載し、適切な接触圧と軌跡を制御します。なお、本機体は<strong>操学舘ドローンスクール</strong>が設計・制作しました。</p>
+                <p>デフォルト装備機体をベースに機体上部へ拭き取りモジュールを搭載したモデル。アーム先端に布材を装着し対象面へ押し当てて拭き取り動作を行う。なお、本機体は<strong>WRS2025 TeamSogakkn</strong>が設計・制作しました。</p>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <img src="images2/④ 拭き取り機体/1_斜め上_拭取り機体.jpg" alt="拭き取り機体 斜め上">
+                <img src="images2/④ 拭き取り機体/2_横_拭取り機体.jpg" alt="拭き取り機体 横">
+                <img src="images2/④ 拭き取り機体/3_張り付き防止設計.png" alt="張り付き防止設計">
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>実装概要</h2>
+            <div class="text-panel">
                 <ul>
-                    <li>モップ/ローラーのクイックリリース機構</li>
-                    <li>接触圧制御、表面追従性</li>
-                    <li>洗浄液・乾拭きのモード切替</li>
-                    <li>安全機構（非常停止、離脱機構）</li>
+                    <li><strong>拭き取りマウント</strong>：ポリカーボネート板と機体を適正な位置で固定し 上部突起で壁面への張り付きを防止する構造とした</li>
+                    <li><strong>アーム（ポリカーボネート板）</strong>：調査面に対しAVATA2の推力で最適な接触圧が得られるよう幅 長さ 枚数を検討し設計した</li>
+                    <li><strong>布材</strong>：調査面に直接接触し物質（マーカー）を拭き取る</li>
+                    <li><strong>清掃液材</strong>：布材の拭き取り性能を補助する</li>
                 </ul>
             </div>
         </section>
 
         <section class="system-section">
-            <h2>主要構成</h2>
+            <h2>仕様</h2>
             <div class="text-panel">
                 <ul>
-                    <li>ペイロード取付ブラケット、重量バランス</li>
-                    <li>補助センサー（接触、圧力、距離）</li>
-                    <li>制御ロジックとUI（作業開始/停止、圧調整）</li>
+                    <li><strong>対象物</strong>：ガラス表面を想定</li>
+                    <li><strong>素材</strong>：ABS（マウント）ポリカーボネート（アーム）天然パルプ不織布（布材）アルコール系電解水クリーナー（清掃液材）</li>
+                    <li><strong>重量</strong>：総重量78.4g</li>
+                    <li><strong>布材厚み</strong>：単層約0.20〜0.25mm（2枚重ね時 約0.2〜0.5mm）</li>
+                    <li><strong>拭き取り部幅</strong>：6.9cm</li>
+                    <li><strong>押し付け力</strong>：約3.4N</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>操作</h2>
+            <div class="text-panel">
+                <ol>
+                    <li>離陸前に布材へ清掃液材を塗布する</li>
+                    <li>機体を調査面に正対させ高さ 左右位置 旋回を調整する</li>
+                    <li>アーム先端の布材を供試体下部（下から約1/3付近）に押し当てる（機体前進）</li>
+                    <li>アームが適切にたわんでいることを確認する</li>
+                    <li>布材が調査面最下部に接触していることを確認する</li>
+                    <li>機体を上昇させ調査面を拭き取る</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>設計上の工夫</h2>
+            <div class="text-panel">
+                <ul>
+                    <li><strong>拭き取り性能</strong>：対象面に拭き取りに必要な圧力が均一にかかるよう アームに柔軟素材（ポリカーボネート）を採用し 布材を二重構造として厚みを持たせ表面追従性を向上させた</li>
+                    <li><strong>壁面張り付き防止</strong>：拭き取り操作は通常ドローンの動作としては壁に張り付きやすく墜落リスクが高いため マウント上部に突起を設け壁面への張り付きを防止し 機体サイズは増加するが安全性を最優先とした</li>
                 </ul>
             </div>
         </section>
@@ -47,7 +96,17 @@
 
     <footer class="site-footer">
         <div class="container">
-            <small>© 2025 WRS | STM 部門</small>
+            <div class="footer-content">
+                <small>© 2025 WRS | STM 部門</small>
+                <div class="footer-links">
+                    <a href="https://sogakkan.jp/" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        操学舘ドローンスクール
+                    </a>
+                    <a href="https://www.instagram.com/sds__school?igsh=MXFhcTIyZWtuYWFpOQ==" target="_blank" rel="noopener noreferrer" class="footer-link footer-link-instagram">
+                        Instagram
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 
