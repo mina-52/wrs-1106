@@ -228,22 +228,78 @@
   
   // ページ読み込み完了時にトップにスクロール
   function scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'instant'
-    });
+    // 複数の方法で確実にトップに移動
+    try {
+      window.scrollTo(0, 0);
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant'
+      });
+      if (document.documentElement) {
+        document.documentElement.scrollTop = 0;
+        document.documentElement.scrollLeft = 0;
+      }
+      if (document.body) {
+        document.body.scrollTop = 0;
+        document.body.scrollLeft = 0;
+      }
+      if (document.scrollingElement) {
+        document.scrollingElement.scrollTop = 0;
+        document.scrollingElement.scrollLeft = 0;
+      }
+    } catch (e) {
+      console.warn('Scroll reset error:', e);
+    }
   }
   
-  // 即座にトップにスクロール
+  // requestAnimationFrameを使って確実に実行
+  function scrollToTopRAF() {
+    if (window.requestAnimationFrame) {
+      window.requestAnimationFrame(function() {
+        scrollToTop();
+        window.requestAnimationFrame(scrollToTop);
+      });
+    } else {
+      scrollToTop();
+    }
+  }
+  
+  // 即座にトップにスクロール（複数回実行）
   scrollToTop();
+  scrollToTopRAF();
+  
+  // 少し遅延して実行
+  setTimeout(scrollToTop, 0);
+  setTimeout(scrollToTopRAF, 0);
+  setTimeout(scrollToTop, 10);
+  setTimeout(scrollToTop, 50);
+  setTimeout(scrollToTop, 100);
   
   // ページが完全に読み込まれた後にも実行（念のため）
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', scrollToTop);
+    document.addEventListener('DOMContentLoaded', function() {
+      scrollToTop();
+      scrollToTopRAF();
+      setTimeout(scrollToTop, 50);
+      setTimeout(scrollToTop, 100);
+      setTimeout(scrollToTop, 200);
+    });
+  } else {
+    // 既に読み込まれている場合
+    scrollToTop();
+    scrollToTopRAF();
+    setTimeout(scrollToTop, 50);
+    setTimeout(scrollToTop, 100);
   }
   
-  window.addEventListener('load', scrollToTop);
+  window.addEventListener('load', function() {
+    scrollToTop();
+    scrollToTopRAF();
+    setTimeout(scrollToTop, 100);
+    setTimeout(scrollToTop, 200);
+    setTimeout(scrollToTop, 300);
+  });
 })();
 
 
