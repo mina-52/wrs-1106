@@ -347,4 +347,58 @@
   });
 })();
 
+// Mobile menu toggle
+(function () {
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const navigation = document.getElementById('header-navigation');
+  
+  if (!toggle || !navigation) return;
+  
+  // 初期状態：モバイルでは折りたたみ
+  function checkMobile() {
+    if (window.innerWidth <= 860) {
+      navigation.classList.add('collapsed');
+      navigation.classList.remove('active');
+    } else {
+      navigation.classList.remove('collapsed');
+      navigation.classList.add('active');
+    }
+  }
+  
+  // 初期チェック
+  checkMobile();
+  
+  // リサイズ時のチェック
+  window.addEventListener('resize', checkMobile);
+  
+  // トグルボタンのクリック
+  toggle.addEventListener('click', function() {
+    const isActive = toggle.classList.contains('active');
+    
+    if (isActive) {
+      // 閉じる
+      toggle.classList.remove('active');
+      navigation.classList.add('collapsed');
+      navigation.classList.remove('active');
+    } else {
+      // 開く
+      toggle.classList.add('active');
+      navigation.classList.remove('collapsed');
+      navigation.classList.add('active');
+    }
+  });
+  
+  // ナビゲーションリンクをクリックしたら閉じる（モバイルのみ）
+  const navLinks = navigation.querySelectorAll('a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      if (window.innerWidth <= 860) {
+        toggle.classList.remove('active');
+        navigation.classList.add('collapsed');
+        navigation.classList.remove('active');
+      }
+    });
+  });
+})();
+
 
