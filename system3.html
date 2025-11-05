@@ -38,7 +38,7 @@
             <h2>UI構成</h2>
             <div class="layout-notes">
                 <ul>
-                    <li><strong>表示内容</strong>: YOLO で学習した物体の検出と追跡を行い、経路やバウンディングボックスを表示</li>
+                    <li><strong>画面構成</strong>: 一画面のみでYOLO で学習した物体の検出と追跡を行い、経路やバウンディングボックスを表示</li>
                 </ul>
             </div>
 
@@ -51,18 +51,12 @@
         <section class="system-section">
             <h2>アルゴリズム・実装概要</h2>
             <div class="text-panel">
+                <p>本システムは、ランドルト環認識システムから学習ファイルのみを変更して作成しました。画面は一画面のみで表示されます。</p>
+                <p>モーション検出は当日どのような課題かが明らかになったため、その場で学習を行いファイルを入れ替えたものです。</p>
                 <ul>
                     <li><strong>入力/推論</strong>: OpenCV カメラ入力（1280x720/30FPS）に対して <code>YOLO('morsyon.pt')</code> を適用。検出結果を <strong>annotated_frame</strong> として描画。</li>
-                    <li><strong>表示モード</strong>: 既定で<strong>全画面</strong>（右上ビュー）を表示。Enter で <strong>四分割</strong>と切替。</li>
-                    <li><strong>四分割ビュー</strong>:
-                        <ul>
-                            <li>左上: 最高信頼度ターゲットのクロップ（独立一時停止可）。</li>
-                            <li>右上: 全体検出ビュー。</li>
-                            <li>左下: 2番目のターゲット（存在時）のクロップ（独立一時停止可）。</li>
-                            <li>右下: 補助表示。対象がある場合は HSV/ランドルト解析オーバーレイ（実装ロジック準拠）、なければ検出統計をテキスト表示。</li>
-                        </ul>
-                    </li>
-                    <li><strong>保存</strong>: このモードでは画像保存は行わない旨を明示（ログにも注意書き出力）。</li>
+                    <li><strong>表示モード</strong>: 一画面のみで表示。</li>
+                    <li><strong>実装</strong>: ランドルト環認識システムのコードベースを流用し、学習モデルファイル（<code>morsyon.pt</code>）のみを差し替えて実装。</li>
                 </ul>
             </div>
         </section>
