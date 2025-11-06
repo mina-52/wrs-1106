@@ -773,30 +773,45 @@ body:hover .bg-decoration {
 .lightbox-overlay.active { display: flex; animation: fadeIn 160ms ease-out; }
 .lightbox-content {
   position: relative;
-  max-width: 95vw;
-  max-height: 95vh;
+  max-width: 98vw;
+  max-height: 98vh;
   background: #ffffff;
   border: 1px solid var(--border);
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(10,20,40,0.25);
   overflow: hidden;
+  padding: 0;
+  margin: 0;
 }
 .lightbox-img {
   display: block;
-  max-width: 95vw;
-  max-height: 90vh;
+  max-width: 98vw;
+  max-height: 98vh;
+  width: auto;
+  height: auto;
   object-fit: contain;
+  padding: 0;
+  margin: 0;
 }
 .lightbox-close {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 12px;
+  right: 12px;
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
   color: #ffffff;
   border: none;
   border-radius: 8px;
-  padding: 8px 12px;
+  padding: 10px 16px;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 1001;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.lightbox-close:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
 @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
