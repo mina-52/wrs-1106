@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>錆認識</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-top">
+                <div class="header-title-group">
+                    <h1>錆認識</h1>
+                </div>
+                <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="メニューを開く" type="button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav id="header-navigation" class="header-navigation collapsed">
+                <div class="nav-wrapper">
+                    <nav class="top-nav">
+                        <a href="index.html" data-tooltip="トップへ戻る">トップ</a>
+                        <a href="system1.html" data-tooltip="ランドルト環認識">ランドルト環認識</a>
+                        <a href="system2.html" data-tooltip="数字 & ランドルト認識">数字 & ランドルト認識</a>
+                        <a href="system3.html" data-tooltip="モーション検出">モーション検出</a>
+                        <a href="system4.html" data-tooltip="危険物ラベル認識">危険物ラベル認識</a>
+                        <a href="system5.html" data-tooltip="QRコード認識">QRコード認識</a>
+                    </nav>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="system-section">
+            <h2>課題説明</h2>
+            <div class="text-panel">
+                <p>フィールド内に設置された板の錆を検出し、錆の位置・面積・割合を正確に分析・可視化する課題である。</p>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>UI構成</h2>
+            <div class="layout-notes">
+                <ul>
+                    <li><strong>左上</strong>: 検出板領域の錆分析画像（一時停止可、錆をマーキング表示）</li>
+                    <li><strong>右上</strong>: YOLO検出結果全体（板のバウンディングボックス表示）</li>
+                    <li><strong>左下</strong>: 錆マスク画像（一時停止時に表示）</li>
+                    <li><strong>右下</strong>: 認識情報と詳細錆分析結果（板数、錆スポット数、面積、割合など）</li>
+                </ul>
+            </div>
+
+            <h2>ギャラリー（クリックで拡大）</h2>
+            <div class="gallery">
+                <img src="images2/sabi.png" alt="錆認識">
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>アルゴリズム・実装概要</h2>
+            <div class="text-panel">
+                <p>本システムは、OBS仮想カメラから入力を受け取り、YOLOモデル（<code>sabi.pt</code>）で板を検出し、検出された板領域内でHSV色空間を用いた詳細な錆分析を実行します。以下の Python ロジックに基づいて設計されています。</p>
+                <ul>
+                    <li><strong>入力/初期化</strong>: OBS仮想カメラ（<code>cv2.VideoCapture(1)</code>）から1280x720/30FPSで取り込み。セッション毎に <code>sabi/session_YYYYMMDD_HHMMSS</code> を作成。</li>
+                    <li><strong>板検出</strong>: <code>YOLO('sabi.pt')</code> で板を検出。検出された板領域内でHSV色空間での錆分析を実行。</li>
+                    <li><strong>錆分析</strong>: HSV色空間の明度（V）を利用。明度15-120の範囲で暗い色を錆として認識。ノイズ除去と輪郭検出により錆スポットを識別。</li>
+                    <li><strong>面積フィルタ</strong>: 画像サイズに応じた適応的面積フィルタを適用。最小面積30px、最大面積は板領域の1/2以下。円形度フィルタ（0.4以上）で有効な錆輪郭を判定。</li>
+                    <li><strong>サイズ分類</strong>: 検出された錆を面積500pxを基準に「S」（小）と「L」（大）の2種類に分類。サイズ別に色分け表示（S: 黄色、L: 赤）。</li>
+                    <li><strong>可視化</strong>: 元画像に錆領域を半透明の赤でハイライト、太い赤い輪郭、中心に黄色い×マークと番号を表示。板のバウンディングボックスは水色で強調。</li>
+                    <li><strong>四分割ビュー</strong>:
+                        <ul>
+                            <li>左上: 検出板領域の錆分析画像（錆をマーキング表示、一時停止可）。</li>
+                            <li>右上: YOLO検出結果全体（板のバウンディングボックスとラベル・信頼度を表示）。</li>
+                            <li>左下: 錆マスク画像（一時停止時に表示、錆部分を赤色で強調）。</li>
+                            <li>右下: 認識情報と詳細錆分析結果（板数、錆スポット数、総面積、錆割合、サイズ別統計、板別詳細情報）。</li>
+                        </ul>
+                    </li>
+                    <li><strong>保存</strong>: 一時停止時に左上画像（錆分析）、左下画像（錆マスク）、右上画像（検出結果全体）の3枚を保存。ファイル名に連番・時刻・フレーム数・検出数を含める。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>画面レイアウトと保存動作</h2>
+            <div class="text-panel">
+                <ul>
+                    <li><strong>左上</strong>: 検出板領域の錆分析画像。錆をマーキング表示し、一時停止時に保存可能。一時停止中は「PAUSED」、再生中は「RUST ANALYSIS」と表示。</li>
+                    <li><strong>右上</strong>: YOLO検出結果全体。全ての検出板にバウンディングボックスとラベル・信頼度を表示。錆分析結果（板数、錆スポット数、総面積、錆割合）も画像上に表示。</li>
+                    <li><strong>左下</strong>: 錆マスク画像。一時停止時に更新され、錆部分を赤色で強調表示。錆スポット数、面積、割合などの情報を表示。</li>
+                    <li><strong>右下</strong>: 認識情報と詳細錆分析結果をテキスト表示。板数、錆スポット数、総面積、錆割合、サイズ別統計（S/L）、板別詳細情報、YOLO検出情報、フレーム数、一時停止状態、保存回数などを表示。</li>
+                    <li><strong>保存</strong>: 一時停止時に左上画像（錆分析済み）、左下画像（錆マスク）、右上画像（検出結果全体）の3枚を自動保存。各画像には適切な情報をオーバーレイ表示。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="system-section">
+            <h2>キー操作</h2>
+            <div class="text-panel">
+                <ul>
+                    <li><strong>1</strong>: 左上の一時停止/再開（保存実行）。一時停止時に錆マスクを左下に表示し、3枚の画像を保存。</li>
+                    <li><strong>q</strong>: 終了。</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <small>© 2025 WRS | STM 部門<br>提供：WRS運営事務局</small>
+                <div class="footer-links">
+                    <a href="https://sogakkan.jp/" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        操学舘ドローンスクール
+                    </a>
+                    <a href="https://www.instagram.com/sds__school?igsh=MXFhcTIyZWtuYWFpOQ==" target="_blank" rel="noopener noreferrer" class="footer-link footer-link-instagram">
+                        Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -65,6 +65,41 @@ body:hover .bg-decoration {
   z-index: 1;
 }
 
+/* 大画面時のレスポンシブ対応 */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1400px;
+    padding: 0 24px;
+  }
+  .site-header h1 {
+    font-size: 28px;
+  }
+  .system-section h2 {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1600px;
+    padding: 0 32px;
+  }
+  .site-header h1 {
+    font-size: 32px;
+  }
+  .system-section h2 {
+    font-size: 32px;
+  }
+  .text-panel {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .top-nav a {
+    font-size: 14px;
+    padding: 12px 18px;
+  }
+}
+
 /* Header */
 .site-header {
   position: sticky;
